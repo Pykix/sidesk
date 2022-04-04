@@ -34,12 +34,13 @@ class Category(models.Model):
 class Project(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField("Titre", max_length=255, unique=True)
-    description = models.CharField("Description", max_length=255)
+    description = models.TextField("Description", max_length=255)
     price = models.DecimalField("Prix", max_digits=10, decimal_places=2)
     category = models.ManyToManyField(Category, related_name="categories")
+    slug = models.SlugField(null=False, unique=True)
 
     def get_absolute_url(self):
-        return reverse("projects:detail", kwargs={"pk": self.pk})
+        return reverse("projects:detail", kwargs={"slug": self.slug})
 
     def __str__(self) -> str:
         return self.title

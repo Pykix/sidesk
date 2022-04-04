@@ -12,6 +12,7 @@ class CustomProjectAdmin(admin.ModelAdmin):
     list_filter = ('title', 'price', 'category',)
     filter_horizontal = ('category',)
     search_fields = ('category__label', 'title',)
+    prepopulated_fields = {'slug': ("title",)}
 
     @admin.display(description="Category")
     def get_categories(self, obj):
