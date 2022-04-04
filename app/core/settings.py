@@ -140,7 +140,7 @@ SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
-LOGIN_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'projects:list'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -160,11 +160,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_FILES_DIRS = (
+STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

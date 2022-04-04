@@ -4,6 +4,6 @@
 {% if user.is_authenticated %}
 <p>Bienvenue {{ user.username }} !!!</p>
 {% else %}
-<a href="{% provider_login_url 'google' %}">S'enregistrer avec Google</a>
-<a href="{% url 'account_login' %}">S'enregistrer avec un email</a>
+<a href="{% provider_login_url 'google' %}">Se connecter avec Google</a>
+<a href="{% url 'account_login' %}">Se connecter avec un email</a>
 {% endif %}

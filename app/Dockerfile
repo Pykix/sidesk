@@ -8,7 +8,7 @@ ENV PYTHONUNbUFFERED 1
 
 # install psycopg2 dependencies
 RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev
+    && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev zlib-dev libjpeg jpeg-dev
 
 # Install dependencies
 RUN pip install -U pip
