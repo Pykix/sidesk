@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block title %}Sidesk tout les projets{% endblock title %}
+{% block content %}
+<h1 class="title">Tout les projets</h1>
+
+<ul>
+    {% for project in projects %}
+    <li>{{project.title}} - {{project.price}} €</li>
+    {%empty%}
+    <li>Pas de projets</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

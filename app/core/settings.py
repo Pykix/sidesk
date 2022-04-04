@@ -27,6 +27,7 @@ ALLOWED_HOSTS.extend(
 # Application definition
 
 DJANGO_APPS = [
+    # 'grappelli',  # adding before admin for login
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ THIRD_PARTY_APPS = [
 
 PROJECT_APPS = [
     'users',
+    'projects',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -158,6 +160,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_FILES_DIRS = (
+    BASE_DIR / 'static',
+)
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
