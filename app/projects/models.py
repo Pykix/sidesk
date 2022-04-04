@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.urls import reverse
 from users.models import CustomUser
 
 
@@ -36,6 +37,9 @@ class Project(models.Model):
     description = models.CharField("Description", max_length=255)
     price = models.DecimalField("Prix", max_digits=10, decimal_places=2)
     category = models.ManyToManyField(Category, related_name="categories")
+
+    def get_absolute_url(self):
+        return reverse("projects:detail", kwargs={"pk": self.pk})
 
     def __str__(self) -> str:
         return self.title
