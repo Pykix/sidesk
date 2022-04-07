@@ -16,6 +16,6 @@ class ProjectDetailView(DetailView):
 
 class ProjectUpdateView(UpdateView):
     model = Project
-    fields = ('description', 'price', 'category', )
+    fields = ('title', 'description', 'price', 'category', )
     template_name = 'projects/project_update.html'
     success_url = reverse_lazy("projects:list")

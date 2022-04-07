@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 from users.models import CustomUser
 
 
@@ -38,6 +39,10 @@ class Project(models.Model):
     price = models.DecimalField("Prix", max_digits=10, decimal_places=2)
     category = models.ManyToManyField(Category, related_name="categories")
     slug = models.SlugField(null=False, unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("projects:detail", kwargs={"slug": self.slug})
