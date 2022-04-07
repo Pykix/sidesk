@@ -5,7 +5,8 @@
 
 <ul>
     {% for project in projects %}
-    <li>{{project.title}} - {{project.price}} € - <a href="{{project.get_absolute_url}}">détails</a></li>
+    <li>{{project.title}} - {{project.price}} € - <a href="{{project.get_absolute_url}}">détails</a> - <a
+            href="{% url 'projects:update' project.slug %}">Update</a></li>
     {%empty%}
     <li>Pas de projets</li>
     {% endfor %}
