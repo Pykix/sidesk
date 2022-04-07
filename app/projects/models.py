@@ -33,6 +33,11 @@ class Category(models.Model):
 
 
 class Project(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Projets"
+        verbose_name = "Projet"
+
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField("Titre", max_length=255, unique=True)
     description = models.TextField("Description", max_length=255)
