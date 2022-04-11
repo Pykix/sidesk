@@ -1,7 +1,10 @@
 {% extends 'core/base.html' %}
-{% block title %}Sidesk tout les projets{% endblock title %}
+{% block title %}Sidesk tous les projets{% endblock title %}
 {% block content %}
-<h1 class="title">Tout les projets</h1>
+<h1 class="title">Tous les projets</h1>
+{% if user.is_authenticated %}
+<a href="{% url 'projects:create' %}">Créer un projet</a>
+{% endif %}
 
 <ul>
     {% for project in projects %}

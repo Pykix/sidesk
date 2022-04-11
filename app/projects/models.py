@@ -1,4 +1,5 @@
 
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -38,12 +39,13 @@ class Project(models.Model):
         verbose_name_plural = "Projets"
         verbose_name = "Projet"
 
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     title = models.CharField("Titre", max_length=255, unique=True)
     description = models.TextField("Description", max_length=255)
     price = models.DecimalField("Prix", max_digits=10, decimal_places=2)
     category = models.ManyToManyField(Category, related_name="categories")
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(null=False, unique=True,)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

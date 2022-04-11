@@ -1,10 +1,10 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Edition du projet{% endblock title %}
+{% block title %}Creation du projet{% endblock title %}
 {% block content %}
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Mettre à jour">
+    <input type="submit" value="Créer">
 </form>
 {% endblock content %}

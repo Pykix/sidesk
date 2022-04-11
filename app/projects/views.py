@@ -1,7 +1,18 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from .models import Project
+
+
+class ProjectCreateView(LoginRequiredMixin, CreateView):
+    model = Project
+    fields = ('title', 'description', 'price', 'category', )
+    template_name = 'projects/project_create.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class ProjectListView(ListView):
@@ -14,7 +25,7 @@ class ProjectDetailView(DetailView):
     context_object_name = "project"
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     fields = ('title', 'description', 'price', 'category', )
     template_name = 'projects/project_update.html'
