@@ -16,7 +16,7 @@ class CustomProjectAdmin(admin.ModelAdmin):
 
     @admin.display(description="Category")
     def get_categories(self, obj):
-        return " | ".join([p.get_label_display() for p in obj.category.all()])
+        return " | ".join([p.abbreviated for p in obj.category.all()])
 
 
 admin.site.register(Category)

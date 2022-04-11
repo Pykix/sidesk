@@ -12,25 +12,19 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
         verbose_name = "Catégorie"
 
-    CATEGORIES_CHOICES = (
-        ('SA', 'SaaS'),
-        ('ME', 'e-Commerce'),
-        ('SP', 'Reseau Social'),
-        ('CS', 'Relation Client'),
-        ('BD', 'Big Data'),
-        ('WE', 'Website / Web Application'),
-        ('FT', 'Fintech'),
-        ('CP', 'Crypto / Blockchain'),
-        ('MA', 'Application mobile'),
-        ('DA', 'Application bureau'),
-    )
-    label = models.CharField(choices=CATEGORIES_CHOICES, max_length=2)
+    label = models.CharField('Label', max_length=255, unique=True)
+    abbreviated = models.CharField(
+        'Clé', max_length=4, unique=True, help_text="4 caractère max")
+
+    def save(self, *args, **kwargs):
+        self.abbreviated = self.abbreviated.upper()
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return self.get_label_display()  # type: ignore
+        return f"{self.abbreviated} - {self.label}"
 
     def __repr__(self) -> str:
-        return self.get_label_display()  # type: ignore
+        return f"{self.abbreviated} - {self.label}"
 
 
 class Project(models.Model):

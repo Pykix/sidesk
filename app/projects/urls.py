@@ -1,7 +1,6 @@
 """project URL Configuration
 """
 
-from unicodedata import name
 
 from django.urls import include, path
 

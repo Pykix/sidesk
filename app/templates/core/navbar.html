@@ -1,7 +1,22 @@
-<nav>
+<nav class="navbar">
     <ul>
-        <li>
-            <a href="{% url 'login' %}">Se connecter</a>
+        <li><a href="{% url 'landing-page' %}">Accueil</a></li>
+        <li><a href="{% url 'projects:list' %}">Les Projets</a></li>
+        <li><a href="{% url 'projects:list' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+        <li class="navbar-item">
+            <a href="{% url 'account_logout' %}">Compte</a>
         </li>
+        <li class="navbar-item">
+            <a href="{% url 'account_logout' %}">Se deconnecter</a>
+        </li>
+        {% else %}
+        <li class="navbar-item">
+            <a href="{% url 'account_login' %}">Se connecter</a>
+        </li>
+        <li class="navbar-item">
+            <a href="{% url 'account_signup' %}">S'enregistrer</a>
+        </li>
+        {% endif %}
     </ul>
 </nav>
