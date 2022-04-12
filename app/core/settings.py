@@ -179,6 +179,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Text editor configuration 
 CKEDITOR_CONFIGS = {
     'project_desc': {
-        'toolbar': 'Basic',
-    },
+        'skin': 'moono',
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
 }
