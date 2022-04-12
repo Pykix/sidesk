@@ -42,6 +42,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'ckeditor',
 ]
 
 PROJECT_APPS = [
@@ -173,3 +174,11 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Text editor configuration 
+CKEDITOR_CONFIGS = {
+    'project_desc': {
+        'toolbar': 'Basic',
+    },
+}

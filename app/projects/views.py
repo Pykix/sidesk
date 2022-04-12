@@ -7,8 +7,8 @@ from .models import Project
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
-    fields = ('title', 'description', 'price', 'category', )
-    template_name = 'projects/project_create.html'
+    fields = ('name', 'description', 'price', 'category', )
+    template_name = 'projects/project_create_or_update.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -27,6 +27,7 @@ class ProjectDetailView(DetailView):
 
 class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
-    fields = ('title', 'description', 'price', 'category', )
-    template_name = 'projects/project_update.html'
+    fields = ('name', 'description', 'price', 'category', )
+    template_name = 'projects/project_create_or_update.html'
     success_url = reverse_lazy("projects:list")
+    context_object_name = 'project'

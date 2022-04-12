@@ -8,11 +8,11 @@ class CategoryInline(admin.TabularInline):
 
 
 class CustomProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'price', 'get_categories',)
-    list_filter = ('title', 'price', 'category',)
+    list_display = ('name', 'price', 'get_categories',)
+    list_filter = ('name', 'price', 'category',)
     filter_horizontal = ('category',)
-    search_fields = ('category__label', 'title',)
-    prepopulated_fields = {'slug': ("title",)}
+    search_fields = ('category__label', 'name',)
+    prepopulated_fields = {'slug': ("name",)}
 
     @admin.display(description="Category")
     def get_categories(self, obj):

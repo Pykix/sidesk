@@ -1,9 +1,9 @@
 
+from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from users.models import CustomUser
 
 
 class Category(models.Model):
@@ -35,24 +35,26 @@ class Project(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    title = models.CharField("Titre", max_length=255, unique=True)
-    description = models.TextField("Description", max_length=255)
+    name = models.CharField("Titre", max_length=255, unique=True)
+    summarize = models.CharField(
+        "Résumer", max_length=80, help_text="80 caractères max")
+    description = RichTextField(config_name='project_desc')
     price = models.DecimalField("Prix", max_digits=10, decimal_places=2)
     category = models.ManyToManyField(Category, related_name="categories")
     slug = models.SlugField(null=False, unique=True,)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("projects:detail", kwargs={"slug": self.slug})
 
     def __str__(self) -> str:
-        return self.title
+        return self.name
 
     def __repr__(self) -> str:
-        return self.title
+        return self.name
 
 
 class ProjectImage(models.Model):
