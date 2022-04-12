@@ -43,11 +43,13 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'ckeditor',
+    'django_extensions',
 ]
 
 PROJECT_APPS = [
     'users',
     'projects',
+    'staticpages'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS

@@ -4,3 +4,4 @@ django-allauth>=0.43,<0.44
 django-grappelli
 pillow
 django-ckeditor
+django-extensions

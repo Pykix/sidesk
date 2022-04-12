@@ -7,7 +7,7 @@ from .models import Project
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
-    fields = ('name', 'description', 'price', 'category', )
+    fields = ('name', 'summarize','description', 'price', 'category', )
     template_name = 'projects/project_create_or_update.html'
 
     def form_valid(self, form):

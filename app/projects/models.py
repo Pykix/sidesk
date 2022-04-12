@@ -40,7 +40,7 @@ class Project(models.Model):
         "Résumer", max_length=80, help_text="80 caractères max")
     description = RichTextField(config_name='project_desc')
     price = models.DecimalField("Prix", max_digits=10, decimal_places=2)
-    category = models.ManyToManyField(Category, related_name="categories")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     slug = models.SlugField(null=False, unique=True,)
 
     def save(self, *args, **kwargs):
