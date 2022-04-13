@@ -10,6 +10,7 @@
     {% for project in projects %}
     <li>{{project.name}} - {{project.price}} € - <a href="{{project.get_absolute_url}}">détails</a> - <a
             href="{% url 'projects:update' project.slug %}">Update</a>
+            <a href="{% url 'projects:delete' project.slug %}">Supprimer</a>
         </li>
     {%empty%}
     <li>Pas de projets</li>

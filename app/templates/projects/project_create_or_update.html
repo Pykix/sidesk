@@ -17,6 +17,7 @@
     {% csrf_token %}
     {{ form }}
     {{ projectimage_form }}
+    {{ projectmetric_form }}
     {% if project %}
     <input type="submit" value="Mettre à jour">
     {% else %}

@@ -63,27 +63,35 @@ class Project(models.Model):
 
 
 def get_upload_path(instance, filename):
-        return f"projects/{instance.project.name}/{filename}"
+    return f"projects/{instance.project.name}/{filename}"
+
 
 class ProjectImage(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="images")
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name="images")
     image = models.FileField(upload_to=get_upload_path)
-    
+
     @property
     def get_filename(self):
         path = Path(self.image.name)
         return path.stem
-    
+
     def __str__(self) -> str:
-        return f"{self.project.name} - {self.get_filename}" # type: ignore
+        return f"{self.project.name} - {self.get_filename}"  # type: ignore
+
 
 class ProjectMetric(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="metrics")
-    viewer_month = models.CharField('Visiteur par mois', max_length=50)
-    viewer_proof = models.ImageField(upload_to=get_upload_path)
-    download_month = models.CharField('Nombre de téléchargement', max_length=200)
-    download_proof = models.ImageField(upload_to=get_upload_path)
-    revenue_month = models.CharField("Revenue mensuel", max_length=200)
-    revenue_proof = models.ImageField(upload_to=get_upload_path)
-    
-
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name="metrics")
+    viewer_month = models.CharField(
+        'Visiteur par mois', max_length=50, null=True, blank=True, default="Non communiquer")
+    viewer_proof = models.ImageField(
+        upload_to=get_upload_path, null=True, blank=True)
+    download_month = models.CharField(
+        'Nombre de téléchargement', max_length=200, null=True, blank=True, default="Non communiquer")
+    download_proof = models.ImageField(
+        upload_to=get_upload_path, null=True, blank=True)
+    revenue_month = models.CharField(
+        "Revenue mensuel", max_length=200, null=True, blank=True, default="Non communiquer")
+    revenue_proof = models.ImageField(
+        upload_to=get_upload_path, null=True, blank=True)
