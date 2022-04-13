@@ -1,4 +1,6 @@
 
+from distutils.command.upload import upload
+from operator import mod
 from pathlib import Path
 
 from ckeditor.fields import RichTextField
@@ -59,12 +61,12 @@ class Project(models.Model):
         return self.name
 
 
-def get_upload_image_path(instance, filename):
+def get_upload_path(instance, filename):
         return f"projects/{instance.project.name}/{filename}"
 
 class ProjectImage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="images")
-    image = models.FileField(upload_to=get_upload_image_path)
+    image = models.FileField(upload_to=get_upload_path)
     
     @property
     def get_filename(self):
@@ -74,5 +76,3 @@ class ProjectImage(models.Model):
     def __str__(self) -> str:
         return f"{self.project.name} - {self.get_filename}" # type: ignore
     
-
-
