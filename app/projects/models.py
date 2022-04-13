@@ -6,6 +6,7 @@ from pathlib import Path
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.db import models
+from django.forms import ImageField
 from django.urls import reverse
 from django.utils.text import slugify
 
@@ -75,4 +76,14 @@ class ProjectImage(models.Model):
     
     def __str__(self) -> str:
         return f"{self.project.name} - {self.get_filename}" # type: ignore
+
+class ProjectMetric(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="metrics")
+    viewer_month = models.CharField('Visiteur par mois', max_length=50)
+    viewer_proof = models.ImageField(upload_to=get_upload_path)
+    download_month = models.CharField('Nombre de téléchargement', max_length=200)
+    download_proof = models.ImageField(upload_to=get_upload_path)
+    revenue_month = models.CharField("Revenue mensuel", max_length=200)
+    revenue_proof = models.ImageField(upload_to=get_upload_path)
     
+

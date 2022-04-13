@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount.providers.google',
     'ckeditor',
     'django_extensions',
+    'crispy_forms',
 ]
 
 PROJECT_APPS = [
@@ -191,3 +192,7 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+
+# Crispy forms
+# CRISPY_TEMPLATE_PACK = 'uni_form'

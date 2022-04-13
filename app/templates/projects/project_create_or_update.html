@@ -1,6 +1,8 @@
 
 {% extends 'core/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
+
 
  {% block title %}
 {% if project %}
@@ -11,10 +13,10 @@
 {% endblock title %}
 
 {% block content %}
-<form method="post">
+<form method="post" enctype="multipart/form-data" class="project-form">
     {% csrf_token %}
-    {{ form.as_p }}
-
+    {{ form }}
+    {{ projectimage_form }}
     {% if project %}
     <input type="submit" value="Mettre à jour">
     {% else %}
