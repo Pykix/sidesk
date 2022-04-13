@@ -9,9 +9,11 @@
 <ul>
     {% for project in projects %}
     <li>{{project.name}} - {{project.price}} € - <a href="{{project.get_absolute_url}}">détails</a> - <a
-            href="{% url 'projects:update' project.slug %}">Update</a></li>
+            href="{% url 'projects:update' project.slug %}">Update</a>
+        </li>
     {%empty%}
     <li>Pas de projets</li>
     {% endfor %}
 </ul>
+
 {% endblock content %}

@@ -1,4 +1,6 @@
 
+from pathlib import Path
+
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.db import models
@@ -37,7 +39,7 @@ class Project(models.Model):
                              on_delete=models.CASCADE)
     name = models.CharField("Titre", max_length=255, unique=True)
     summarize = models.CharField(
-        "Résumer", max_length=80, help_text="80 caractères max")
+        "Resumer", max_length=80, help_text="80 caractères max")
     description = RichTextField(config_name='project_desc')
     price = models.DecimalField("Prix", max_digits=10, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -57,6 +59,20 @@ class Project(models.Model):
         return self.name
 
 
+def get_upload_image_path(instance, filename):
+        return f"projects/{instance.project.name}/{filename}"
+
 class ProjectImage(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="images/")
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="images")
+    image = models.FileField(upload_to=get_upload_image_path)
+    
+    @property
+    def get_filename(self):
+        path = Path(self.image.name)
+        return path.stem
+    
+    def __str__(self) -> str:
+        return f"{self.project.name} - {self.get_filename}" # type: ignore
+    
+
+
