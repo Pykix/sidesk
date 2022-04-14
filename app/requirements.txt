@@ -6,3 +6,4 @@ pillow
 django-ckeditor
 django-extensions
 django-crispy-forms
+django-cleanup

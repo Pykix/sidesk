@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
     'ckeditor',
     'django_extensions',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 PROJECT_APPS = [
@@ -179,14 +180,15 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Text editor configuration 
+# Text editor configuration
 CKEDITOR_CONFIGS = {
     'project_desc': {
         'skin': 'moono',
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
             ['RemoveFormat', 'Source']
         ]
