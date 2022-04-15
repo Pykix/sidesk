@@ -25,7 +25,7 @@ class ProjectForm(forms.ModelForm):
 
 
 ImageFileFormSet = forms.inlineformset_factory(
-    Project, ProjectImage, fields=('image',), extra=3, can_delete_extra=False,
+    Project, ProjectImage, fields=('image','alt',), extra=3, can_delete_extra=False,
     form=ProjectForm, min_num=1, max_num=5)
 
 MetricFormSet = forms.inlineformset_factory(

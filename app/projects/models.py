@@ -70,6 +70,7 @@ class ProjectImage(models.Model):
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name="images")
     image = models.FileField(upload_to=get_upload_path)
+    alt = models.CharField("Nom de l'image", max_length=255, blank=True, null=True)
 
     @property
     def get_filename(self):
