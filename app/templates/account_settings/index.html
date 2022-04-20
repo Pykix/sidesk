@@ -1,0 +1,7 @@
+{% extends 'core/base.html' %}
+{% block title %}Gestion du compte{% endblock title %}
+
+{% block content %}
+Gestion du compte
+<ul><li><a href="{% url 'account_settings:update' %}">Mettre a jour le profil</a></li></ul>
+{% endblock content %}

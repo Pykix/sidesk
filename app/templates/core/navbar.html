@@ -5,7 +5,7 @@
         <li><a href="{% url 'projects:list' %}">Contact</a></li>
         {% if user.is_authenticated %}
         <li class="navbar-item">
-            <a href="{% url 'account_logout' %}">Compte</a>
+            <a href="{% url 'account_settings:index' %}">Compte</a>
         </li>
         <li class="navbar-item">
             <a href="{% url 'account_logout' %}">Se deconnecter</a>

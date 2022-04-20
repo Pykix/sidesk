@@ -12,6 +12,6 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("login/", Login.as_view(), name="login"),
     path("projects/", include("projects.urls")),
-    path("account/", include("accounts.urls")),
+    path("account-settings/", include("accounts.urls")),
     path("", include("staticpages.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
