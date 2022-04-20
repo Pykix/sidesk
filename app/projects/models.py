@@ -4,10 +4,13 @@ from pathlib import Path
 
 from ckeditor.fields import RichTextField
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.forms import ImageField
 from django.urls import reverse
 from django.utils.text import slugify
+
+from .misc import bill_number_generator
 
 
 class Category(models.Model):
@@ -111,3 +114,23 @@ class ProjectMetric(models.Model):
         default="Non communiquer",
     )
     revenue_proof = models.ImageField(upload_to=get_upload_path, null=True, blank=True)
+
+
+class Order(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    seller = models.ForeignKey(
+        get_user_model(), on_delete=models.DO_NOTHING, related_name="seller"
+    )
+    buyer = models.ForeignKey(
+        get_user_model(), on_delete=models.DO_NOTHING, related_name="buyer"
+    )
+    bill_number = models.CharField(max_length=255, unique=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def save(self):
+        self.bill_number = bill_number_generator(
+            self.project.name, self.buyer, self.seller
+        )
+
+    def __str__(self) -> str:
+        return f"{self.project} - {self.bill_number}"
