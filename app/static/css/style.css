@@ -16,3 +16,9 @@
 .project-form .form-item {
     margin: 10px 0;
 }
+
+
+/* Account settings */
+.profile-picture {
+    width: 150px;
+}

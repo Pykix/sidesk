@@ -2,9 +2,30 @@
 {% block title %}Profil{% endblock title %}
 
 {% block content %}
-<form enctype-"multipart/form" method="post">
+<form enctype="multipart/form-data" method="post" class="project-form">
     {% csrf_token %}
     {{form}}
+    {% if form.instance.picture %}
+    <img src="{{form.instance.picture.url}}" alt="" class="profile-picture">
+    {% endif %}
     <input type="submit" value="Mettre à jour">
 </form>
+
+<div id="changePassword">
+    <button class='btn' hx-get="{% url 'account_settings:change_password' %}" 
+                        hx-target="#changePassword" 
+                        hx-swap="outerHTML">
+         Changer mon mot de passe...
+    </button>
+</div>
+
 {% endblock content %}
+
+{% block script %}
+<script src="https://unpkg.com/htmx.org@1.7.0" defer></script>
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+      event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+  </script>
+{% endblock script %}
