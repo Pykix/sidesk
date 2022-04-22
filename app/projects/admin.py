@@ -50,9 +50,15 @@ class ProjectMetricAdmin(admin.ModelAdmin):
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
+        "bill_number",
         "project",
         "seller",
         "buyer",
+    )
+
+    search_fields = (
+        "project__name",
+        "bill_number",
     )
     exclude = ("bill_number",)
 

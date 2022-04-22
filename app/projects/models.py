@@ -28,10 +28,10 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f"{self.abbreviated} - {self.label}"
+        return self.label
 
     def __repr__(self) -> str:
-        return f"{self.abbreviated} - {self.label}"
+        return self.label
 
 
 class Project(models.Model):
@@ -127,10 +127,11 @@ class Order(models.Model):
     bill_number = models.CharField(max_length=255, unique=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.bill_number = bill_number_generator(
-            self.project.name, self.buyer, self.seller
+            self.project.name, str(self.buyer.pk), str(self.seller.pk)
         )
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.project} - {self.bill_number}"

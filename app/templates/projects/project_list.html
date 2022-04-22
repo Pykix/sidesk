@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+
 {% block title %}Sidesk tous les projets{% endblock title %}
 {% block content %}
 <h1 class="title">Tous les projets</h1>
@@ -6,15 +7,33 @@
 <a href="{% url 'projects:create' %}">Créer un projet</a>
 {% endif %}
 
-<ul>
+<div class="container">
     {% for project in projects %}
-    <li>{{project.name}} - {{project.price}} € - <a href="{{project.get_absolute_url}}">détails</a> - <a
-            href="{% url 'projects:update' project.slug %}">Update</a>
-            <a href="{% url 'projects:delete' project.slug %}">Supprimer</a>
-        </li>
+    <a href="" class="project-link">
+        <div class="card">
+          <div class="card-header">
+            <img src="{{project.images.all.0.image.url}}" alt="{{project.images.alt}}" />
+          </div>
+          <div class="card-body">
+            <span class="tag tag-teal">{{project.category}}</span>
+            <h4>
+              {{project.name}}
+            </h4>
+            <p>
+              {{project.summarize}}
+            </p>
+            <div class="user">
+              <div class="user-info">
+                <h5>{{project.price}}€</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+    </a>
     {%empty%}
     <li>Pas de projets</li>
     {% endfor %}
-</ul>
+</div>
 
 {% endblock content %}
+
