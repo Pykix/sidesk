@@ -127,8 +127,7 @@ body {
     min-height: 200px;
 }
 
-.tag {
-    background: #cccccc;
+.category {
     border-radius: 50px;
     font-size: 12px;
     margin: 0;
@@ -138,17 +137,7 @@ body {
     margin-bottom: 10px;
 }
 
-.tag-teal {
-    background-color: #47bcd4;
-}
 
-.tag-purple {
-    background-color: #5e76bf;
-}
-
-.tag-pink {
-    background-color: #cd5b9f;
-}
 
 .card-body p {
     font-size: 13px;

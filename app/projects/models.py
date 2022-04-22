@@ -1,12 +1,9 @@
-from distutils.command.upload import upload
-from operator import mod
 from pathlib import Path
 
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.forms import ImageField
 from django.urls import reverse
 from django.utils.text import slugify
 
@@ -22,6 +19,7 @@ class Category(models.Model):
     abbreviated = models.CharField(
         "Clé", max_length=4, unique=True, help_text="4 caractère max"
     )
+    color = models.CharField(max_length=7, default="#FFFFFF")
 
     def save(self, *args, **kwargs):
         self.abbreviated = self.abbreviated.upper()
