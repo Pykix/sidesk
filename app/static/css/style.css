@@ -1,7 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+/** VARIABLES **/
+
+:root {
+    --main-background-color: #D4D6B9;
+    --second-background-color: #DACAA1;
+    --button-background-color: #66717E;
+    --button-hover-background-color: #66717ebd;
+}
 
 * {
     font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: var(--second-background-color);
+}
+
+/** GENERAL **/
+/* Button */
+.button-link {
+    padding: 15px;
+    background: var(--button-background-color);
+    border-radius: 10px;
+    color: #fff;
+    transition: background 0.5s ease;
+}
+
+.button-link:hover {
+    background: var(--button-hover-background-color);
 }
 
 .title {
@@ -10,6 +36,35 @@
 
 .content {
     margin: 20px
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    flex-direction: row;
+    background: var(--main-background-color);
+    overflow: hidden;
+}
+
+.navbar .push {
+    flex-grow: 1;
+}
+
+.navbar a {
+    padding: 15px 20px;
+    transition: background 0.5s ease;
+}
+
+.navbar a:nth-child(1) {
+    padding: 0;
+}
+
+.navbar a img {
+    width: 70px;
+}
+
+.navbar a:hover {
+    background: var(--button-hover-background-color);
 }
 
 /* PROJECT FORM */
@@ -30,6 +85,18 @@
 }
 
 /** Project List **/
+
+
+.all-project {
+    display: flex;
+    justify-content: space-between;
+}
+
+.all-project a {
+    align-items: baseline;
+}
+
+
 /* Card */
 .container {
     display: flex;

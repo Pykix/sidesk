@@ -1,22 +1,17 @@
-<nav class="navbar">
-    <ul>
-        <li><a href="{% url 'landing-page' %}">Accueil</a></li>
-        <li><a href="{% url 'projects:list' %}">Les Projets</a></li>
-        <li><a href="{% url 'projects:list' %}">Contact</a></li>
-        {% if user.is_authenticated %}
-        <li class="navbar-item">
+{% load static %}
+<nav >
+    <div class="navbar">
+        <a href="{% url 'landing-page' %}"><img src="{% static 'images/min-logo.png' %}" alt=""></a>
+        <a href="{% url 'landing-page' %}">Accueil</a>
+        <a href="{% url 'projects:list' %}">Les Projets</a>
+        <a href="{% url 'projects:list' %}">Contact</a>
+        <div class="push"></div>
+        {% if user.is_authenticated %}       
             <a href="{% url 'account_settings:index' %}">Compte</a>
-        </li>
-        <li class="navbar-item">
-            <a href="{% url 'account_logout' %}">Se deconnecter</a>
-        </li>
+            <a href="{% url 'account_logout' %}">Se deconnecter</a>      
         {% else %}
-        <li class="navbar-item">
             <a href="{% url 'account_login' %}">Se connecter</a>
-        </li>
-        <li class="navbar-item">
-            <a href="{% url 'account_signup' %}">S'enregistrer</a>
-        </li>
+            <a href="{% url 'account_signup' %}">S'enregistrer</a>       
         {% endif %}
-    </ul>
+    </div>
 </nav>
