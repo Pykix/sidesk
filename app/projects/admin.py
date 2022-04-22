@@ -10,7 +10,7 @@ class ProjectImageInline(admin.StackedInline):
 
 class ProjectMetricInline(admin.StackedInline):
     model = ProjectMetric
-    max_num = 0
+    max_num = 1
 
 
 class ProjectAdmin(admin.ModelAdmin):

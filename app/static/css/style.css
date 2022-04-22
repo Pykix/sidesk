@@ -38,32 +38,32 @@ body {
     margin: 20px
 }
 
-/* NAVBAR */
-.navbar {
+/* NAV */
+.nav {
     display: flex;
     flex-direction: row;
     background: var(--main-background-color);
     overflow: hidden;
 }
 
-.navbar .push {
+.nav .push {
     flex-grow: 1;
 }
 
-.navbar a {
+.nav a {
     padding: 15px 20px;
     transition: background 0.5s ease;
 }
 
-.navbar a:nth-child(1) {
+.nav a:nth-child(1) {
     padding: 0;
 }
 
-.navbar a img {
+.nav a img {
     width: 70px;
 }
 
-.navbar a:hover {
+.nav a:hover {
     background: var(--button-hover-background-color);
 }
 
@@ -157,4 +157,44 @@ body {
 
 .user-info small {
     color: #545d7a;
+}
+
+
+/** DETAILS **/
+.project-title {
+    margin-bottom: 25px;
+}
+
+.project-base,
+.project-metrics {
+    margin-bottom: 20px;
+    background: var(--button-background-color);
+    padding: 20px;
+    width: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-base .desc {
+    max-width: 1000px;
+}
+
+.description-title {
+    margin: 10px 0;
+}
+
+.carousel {
+    width: 1000px;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

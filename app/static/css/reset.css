@@ -52,6 +52,11 @@ a {
     color: inherit;
 }
 
+a:hover {
+    text-decoration: None;
+    color: inherit;
+}
+
 /* Make images easier to work with */
 img,
 picture {
