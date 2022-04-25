@@ -8,11 +8,11 @@
 <h2 class="project-title">{{project.name}}</h2>
 <div class="project-base">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
+        {% comment %} <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
+        </ol> {% endcomment %}
         <div class="carousel-inner">
             {% for images in project.images.all %}
           <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
