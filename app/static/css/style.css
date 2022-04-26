@@ -80,10 +80,19 @@ body {
 }
 
 
-/* Account settings */
+/** Account settings **/
 .profile-picture {
     width: 150px;
 }
+.order {
+    display: flex;
+    flex-direction: row;
+}
+.order .item {
+    padding: 5px;
+    margin: 5px 5px;
+}
+
 
 /** Project List **/
 
@@ -233,3 +242,5 @@ body {
     flex-direction: column;
     margin: 10px 0;
 }
+
+

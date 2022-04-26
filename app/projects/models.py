@@ -129,6 +129,8 @@ class Order(models.Model):
         self.bill_number = bill_number_generator(
             self.project.name, str(self.buyer.pk), str(self.seller.pk)
         )
+        self.amount = self.project.price
+        self.seller = self.project.user
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:

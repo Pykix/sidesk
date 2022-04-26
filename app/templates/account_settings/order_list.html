@@ -2,17 +2,28 @@
 {% block title %}Mes demande d'achat / vente{% endblock title %}
 
 {% block content %}
+<h2>Vente</h2>
 {% for order in orders %}
 {% if order.seller == request.user %}
-<p>Vente</p>
-<p>{{order.bill_number}}</p>
-<p>{{order.project.name}}</p>
-<p>{{order.project.price}}</p>
-{% else %}
-<p>Achat</p>
-<p>{{order.bill_number}}</p>
-<p>{{order.project.name}}</p>
-<p>{{order.project.price}}</p>
+<div class="order">
+    <p class="item">{{order.bill_number}}</p>
+    <p class="item">{{order.project.name}}</p>
+    <p class="item">{{order.project.price}}</p>
+</div>
+{% endif %}
+{% empty %}
+
+{% endfor %}
+
+<h2>Achat</h2>
+{% for order in orders %}
+{% if order.buyer == request.user %}
+<div class="order">
+    <p class="item">{{order.bill_number}}</p>
+    <p class="item">{{order.project.name}}</p>
+    <p class="item">{{order.project.price}}</p>
+</div>
+
 {% endif %}
 {% endfor %}
 {% endblock content %}
