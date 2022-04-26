@@ -3,5 +3,8 @@
 
 {% block content %}
 Gestion du compte
-<ul><li><a href="{% url 'account_settings:update' %}">Mettre a jour le profil</a></li></ul>
+<ul>
+    <li><a href="{% url 'account_settings:update' %}">Mettre a jour le profil</a></li>
+    <li><a href="{% url 'account_settings:project_list' %}">Mes Projets</a></li>
+</ul>
 {% endblock content %}

@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import AccountSettingsView, UserPasswordUpdateView, UserProfileUpdateView
+from .views import (AccountSettingsView, UserPasswordUpdateView,
+                    UserProfileUpdateView, UserProjectListView)
 
 app_name = "account_settings"
 
@@ -10,6 +11,7 @@ urlpatterns = [
     path(
         "htmx/change_password/",
         UserPasswordUpdateView.as_view(),
-        name="change_password",
+        name="change_password"
     ),
+    path("project-list/", UserProjectListView.as_view(), name="project_list")
 ]

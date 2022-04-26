@@ -3,7 +3,8 @@ from allauth.account.views import PasswordChangeView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import ListView, TemplateView, UpdateView
+from projects.models import Project
 
 from .forms import ProfileUserForm
 
@@ -26,3 +27,14 @@ class UserPasswordUpdateView(PasswordChangeView):
     form_class = ChangePasswordForm
     template_name = "account_settings/password_change.html"
     success_url = reverse_lazy("account_settings:index")
+
+
+class UserProjectListView(ListView):
+    model = Project
+    template_name = "account_settings/project_list.html"
+    context_object_name = "projects"
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=self.request.user) #type: ignore
+        return queryset

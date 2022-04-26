@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% block title %}Mes projets{% endblock title %}
+{% block content %}
+
+<div class="projects">
+    {% for project in projects %}
+    <a href="{% url 'projects:detail' project.slug %}" class="project-link">
+        <div class="card">
+            <div class="card-header">
+                <img src="{{project.images.all.0.image.url}}" alt="{{project.images.all.0.alt}}" />
+            </div>
+            <div class="card-body">
+                <span style="background-color:{{project.category.color}};" class="category">{{project.category}}</span>
+                <h4>
+                    {{project.name}}
+                </h4>
+                <p>
+                    {{project.summarize}}
+                </p>
+                <div class="user">
+                    <div class="user-info">
+                        <h5>{{project.price}}€</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    {%empty%}
+    <li>Pas de projets</li>
+    {% endfor %}
+</div>
+
+{% endblock content %}
