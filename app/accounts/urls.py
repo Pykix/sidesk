@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import (AccountSettingsView, UserPasswordUpdateView,
-                    UserProfileUpdateView, UserProjectListView)
+from .views import (AccountSettingsView, UserOrderListView,
+                    UserPasswordUpdateView, UserProfileUpdateView,
+                    UserProjectListView)
 
 app_name = "account_settings"
 
@@ -13,5 +14,6 @@ urlpatterns = [
         UserPasswordUpdateView.as_view(),
         name="change_password"
     ),
-    path("project-list/", UserProjectListView.as_view(), name="project_list")
+    path("project-list/", UserProjectListView.as_view(), name="project_list"),
+    path("order-list/", UserOrderListView.as_view(), name="order_list"),
 ]

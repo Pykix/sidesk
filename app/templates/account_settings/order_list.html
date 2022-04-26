@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block title %}Mes demande d'achat / vente{% endblock title %}
+
+{% block content %}
+{% for order in orders %}
+{% if order.seller == request.user %}
+<p>Vente</p>
+<p>{{order.bill_number}}</p>
+<p>{{order.project.name}}</p>
+<p>{{order.project.price}}</p>
+{% else %}
+<p>Achat</p>
+<p>{{order.bill_number}}</p>
+<p>{{order.project.name}}</p>
+<p>{{order.project.price}}</p>
+{% endif %}
+{% endfor %}
+{% endblock content %}

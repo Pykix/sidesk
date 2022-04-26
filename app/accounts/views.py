@@ -2,9 +2,10 @@ from allauth.account.forms import ChangePasswordForm
 from allauth.account.views import PasswordChangeView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView, UpdateView
-from projects.models import Project
+from projects.models import Order, Project
 
 from .forms import ProfileUserForm
 
@@ -37,4 +38,14 @@ class UserProjectListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(user=self.request.user) #type: ignore
+        return queryset
+
+class UserOrderListView(ListView):
+    model = Order
+    template_name = "account_settings/order_list.html"
+    context_object_name = "orders"
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(Q(buyer=self.request.user) | Q(seller=self.request.user)) # type: ignore
         return queryset
