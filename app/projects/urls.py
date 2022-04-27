@@ -4,8 +4,9 @@
 
 from django.urls import path
 
-from .views import (ProjectCreateView, ProjectDeleteView, ProjectDetailView,
-                    ProjectListView, ProjectUpdateView)
+from .views import (CreateOrderTemplateView, ProjectCreateView,
+                    ProjectDeleteView, ProjectDetailView, ProjectListView,
+                    ProjectUpdateView)
 
 app_name = "projects"
 
@@ -14,5 +15,6 @@ urlpatterns = [
     path('edit/<str:slug>/', ProjectUpdateView.as_view(), name="update"),
     path('create/', ProjectCreateView.as_view(), name="create"),
     path('delete/<str:slug>', ProjectDeleteView.as_view(), name='delete'),
+    path('<str:slug>/buy/', CreateOrderTemplateView.as_view(), name="order"),
     path('<str:slug>/', ProjectDetailView.as_view(), name="detail"),
 ]

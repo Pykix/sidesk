@@ -1,15 +1,12 @@
+from re import template
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView)
 
 from .forms import ImageFileFormSet, MetricFormSet, ProjectForm
-from .models import Project
+from .models import Order, Project
 
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
@@ -98,6 +95,26 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin ,DeleteView):
     model = Project
     success_url = reverse_lazy("projects:list")
+
+
+
+class CreateOrderTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "orders/order.html"
+    context_object_name = "order"
+    
+    def get(self, request, *args, **kwargs):
+        project = Project.objects.filter(slug=self.kwargs['slug']).first()
+        
+        order = Order()
+        order.project = project
+        order.seller = project.user
+        order.buyer = self.request.user
+        order.amount = project.price
+        order.save()
+        
+        return super().get(request, *args, **kwargs)
+        
+    
