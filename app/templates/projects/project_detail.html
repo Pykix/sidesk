@@ -75,7 +75,12 @@
         </div>
       </div>
     </div>
-    <p>{{project.price}}€</p>
+    <div class="interest">
+      <p class="above-link-project">Ce projet vous interresse ?</p>
+      <a class="link-contact" href="">Contacter le vendeur</a>
+      <p class="above-link-project">L'acheter directement pour {{project.price}}€</p>
+      <a class="link-buy" href="">Acheter {{project.name}}</a>
+    </div>
   </div>
 </div>
 {% endblock content %}
