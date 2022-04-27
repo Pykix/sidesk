@@ -36,7 +36,7 @@ body {
 }
 
 .content {
-    margin: 20px
+    margin: 20px 100px;
 }
 
 /* NAV */
@@ -174,7 +174,10 @@ body {
 .project-title {
     margin-bottom: 25px;
 }
-
+.detail-page {
+    display: flex;
+    justify-content: space-between;
+}
 .project-base,
 .project-metrics {
     margin-bottom: 20px;
@@ -186,7 +189,8 @@ body {
 }
 
 .project-base .desc {
-    max-width: 1000px;
+    min-width: 1000px;
+    width: 1200px;
 }
 
 .description-title {
@@ -194,7 +198,7 @@ body {
 }
 
 .carousel {
-    width: 1000px;
+    width: 1200px;
 }
 
 .carousel-item {
@@ -209,8 +213,42 @@ body {
     object-fit: cover;
 }
 
+.project-order {
+    margin: 0 auto;
+    min-width: 350px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
 
+.project-order .project-user {
+    padding: 10px;
+    border: #66717E 1px solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
 
+.project-order .project-user-title {
+    font-size: 12px;
+    color: #66717E;
+    margin-bottom: 10px;
+}
+
+.project-order .project-user .profile-user {
+    display: flex;
+
+}
+
+.project-order .profile-user img {
+    width: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.project-order .profile-user p {
+    align-self: center;
+    margin-left: 10px;
+}
 /** AUTH **/
 /* Sign Up */
 .signup-page {}

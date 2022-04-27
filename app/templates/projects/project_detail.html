@@ -1,67 +1,87 @@
 {% extends 'core/base.html' %}
 {% block headers %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 {% endblock headers %}
 {% block title %}{{project.title}}{% endblock title %}
 {% block content %}
 
 <h2 class="project-title">{{project.name}}</h2>
-<div class="project-base">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+<div class="detail-page">
+  <div class="project">
+    <div class="project-base">
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         {% comment %} <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol> {% endcomment %}
         <div class="carousel-inner">
-            {% for images in project.images.all %}
+          {% for images in project.images.all %}
           <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
             <img src="{{images.image.url}}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>{{images.alt}}</h5>
             </div>
+          </div>
+          {% endfor %}
+          <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précedent</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+          </button>
         </div>
-        {% endfor %}
-        <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Précedent</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Suivant</span>
-        </button>
-    </div>
-</div>
+      </div>
 
-<h4 class="description-title">Description</h4>
-<div class="desc">
-    {{project.description|safe}}
-</div>
-</div>
-<div class="project-metrics">
-    {% for metrics in project.metrics.all %}
-    <div class="metric-view">
+      <h4 class="description-title">Description</h4>
+      <div class="desc">
+        {{project.description|safe}}
+      </div>
+    </div>
+    <div class="project-metrics">
+      {% for metrics in project.metrics.all %}
+      <div class="metric-view">
         <p>Nombre de vue par mois : {{metrics.viewer_month}}</p>
         {% if metrics.viewer_proof %}
         <img src="{{metrics.viewer_proof.url}}" />
         {% endif %}
-    </div>
-    <div class="metric-download">
+      </div>
+      <div class="metric-download">
         <p>Nombre de téléchargement par mois : {{metrics.download_month}}</p>
         {% if metrics.download_proof %}
         <p>{{metrics.download_proof.url}}</p>
         {% endif %}
-    </div>
-    <div class="metric-revenue">
+      </div>
+      <div class="metric-revenue">
         <p>Nombre de vue par mois : {{metrics.revenue_month}}</p>
         {% if metrics.revenue_proof %}
         <p>{{metrics.revenue_proof.url}}</p>
         {% endif %}
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+  </div>
+  <div class="project-order">
+    <div class="project-user">
+      <p class="project-user-title">CREATEUR DU PROJET</p>
+      <div class="profile-user">
+        <img src="{{project.user.picture.url}}" alt="">
+        <div class="">
+          <p>{{project.user.username}}</p>
+          <p>Inscrit depuis {{project.user.date_joined|date:"d M Y"}}</p>
+        </div>
+      </div>
+    </div>
+    <p>{{project.price}}€</p>
+  </div>
 </div>
 {% endblock content %}
 {% block script %}
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 {% endblock script %}
