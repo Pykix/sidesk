@@ -51,7 +51,7 @@ class Project(models.Model):
         null=False,
         unique=True,
     )
-    visible = models.BooleanField(default=True)
+    visible = models.BooleanField(default=False)
     ordered = models.BooleanField(default=False)
     
     def save(self, *args, **kwargs):
