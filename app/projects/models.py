@@ -33,6 +33,8 @@ class Category(models.Model):
 
 
 class Project(models.Model):
+    
+    
     class Meta:
         verbose_name_plural = "Projets"
         verbose_name = "Projet"
@@ -49,7 +51,9 @@ class Project(models.Model):
         null=False,
         unique=True,
     )
-
+    visible = models.BooleanField(default=True)
+    ordered = models.BooleanField(default=False)
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)

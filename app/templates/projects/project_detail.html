@@ -68,7 +68,11 @@
     <div class="project-user">
       <p class="project-user-title">CREATEUR DU PROJET</p>
       <div class="profile-user">
+        {% if project.user.picture %}
         <img src="{{project.user.picture.url}}" alt="">
+        {% else %}
+        <img src="https://ui-avatars.com/api/" alt="">
+        {% endif %}
         <div class="">
           <p>{{project.user.username}}</p>
           <p>Inscrit depuis {{project.user.date_joined|date:"d M Y"}}</p>

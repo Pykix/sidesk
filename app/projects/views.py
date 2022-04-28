@@ -47,6 +47,12 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 class ProjectListView(ListView):
     model = Project
     context_object_name = "projects"
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(visible=True)
+        return queryset
+    
 
 
 class ProjectDetailView(DetailView):
@@ -103,17 +109,26 @@ class ProjectDeleteView(LoginRequiredMixin ,DeleteView):
 
 class CreateOrderTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "orders/order.html"
-    context_object_name = "order"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order'] = Order.objects.get(project__slug=self.kwargs['slug'])
+        return context
+    
     
     def get(self, request, *args, **kwargs):
         project = Project.objects.filter(slug=self.kwargs['slug']).first()
         
         order = Order()
         order.project = project
-        order.seller = project.user
+        order.seller = project.user # type: ignore
         order.buyer = self.request.user
-        order.amount = project.price
+        order.amount = project.price #type: ignore
         order.save()
+        
+        project.visible = False #type: ignore
+        project.ordered = True #type: ignore
+        project.save()
         
         return super().get(request, *args, **kwargs)
         
