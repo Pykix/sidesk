@@ -117,7 +117,7 @@ class CreateOrderTemplateView(LoginRequiredMixin, TemplateView):
     
     
     def get(self, request, *args, **kwargs):
-        project = Project.objects.filter(slug=self.kwargs['slug']).first()
+        project = Project.objects.get(slug=self.kwargs['slug'])
         
         order = Order()
         order.project = project
