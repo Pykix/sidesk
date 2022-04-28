@@ -10,12 +10,13 @@ class ProjectForm(forms.ModelForm):
             queryset=Category.objects.all(), empty_label="Choisissez une catégorie"
         )
         model = Project
-        fields = ("name", "summarize", "description", "price", "category")
+        fields = ("name", "summarize", "description", "price", "category", "visible")
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-item"}),
             "summarize": forms.TextInput(attrs={"class": "form-item"}),
             "price": forms.NumberInput(attrs={"class": "form-item"}),
             "category": forms.Select(attrs={"class": "form-item"}),
+            "visible": forms.CheckboxInput(attrs={"class":"form-item"})
         }
         labels = {"name": "Nom du projet"}
 

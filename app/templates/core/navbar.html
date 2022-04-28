@@ -1,17 +1,93 @@
 {% load static %}
-<nav >
-    <div class="nav">
-        <a href="{% url 'landing-page' %}"><img src="{% static 'images/min-logo.png' %}" alt=""></a>
-        <a href="{% url 'landing-page' %}">Accueil</a>
-        <a href="{% url 'projects:list' %}">Les Projets</a>
-        <a href="{% url 'projects:list' %}">Contact</a>
-        <div class="push"></div>
-        {% if user.is_authenticated %}       
-            <a href="{% url 'account_settings:index' %}">Compte</a>
-            <a href="{% url 'account_logout' %}">Se deconnecter</a>      
-        {% else %}
-            <a href="{% url 'account_login' %}">Se connecter</a>
-            <a href="{% url 'account_signup' %}">S'enregistrer</a>       
-        {% endif %}
+
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'images/min-logo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        Sidesk
+      </a>
+
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% with url_name=request.resolver_match.url_name %}
+            <li class="nav-item">
+                <a class="nav-link {% if url_name == 'landing-page' %} active {% endif %} " aria-current="page" href="{% url 'landing-page' %}">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'list' %} active {% endif %}" href="{% url 'projects:list' %}">Les Projets</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+              {% endwith %}
+        </ul>
+        <!-- Left links -->
+        <div class="d-flex align-items-center">
+           {% if request.user.is_authenticated %}
+           <div class="dropdown dropstart">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mon compte
+            </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'account_settings:update' %}">Mon profil</a></li>
+                <li><a class="dropdown-item" href="{% url 'account_settings:project_list' %}">Mes projets</a></li>
+                <li><a class="dropdown-item" href="{% url 'account_settings:order_list' %}">Mes achats / vente</a></li>
+                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Deconnexion</a></li>
+              </ul>
+           </div>
+           {% else %}
+           <button type="button" class="btn btn-link px-3 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Connexion / Enregistrement
+          </button>
+           {% endif %} 
+          
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
     </div>
-</nav>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Connexion</button>
+                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Enregistrement</button>
+                </div>
+              
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">Connection form</div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Sign up form</div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary">Connexion</button>
+        </div>
+      </div>
+    </div>
+  </div>

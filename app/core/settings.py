@@ -41,7 +41,9 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount.providers.google",
     "ckeditor",
     "django_extensions",
+    "bootstrap5",
     "crispy_forms",
+    "crispy_bootstrap5",
     "django_cleanup.apps.CleanupConfig",
 ]
 
@@ -203,4 +205,5 @@ CKEDITOR_CONFIGS = {
 
 
 # Crispy forms
-# CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

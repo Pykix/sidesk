@@ -1,20 +1,29 @@
 {% extends 'core/base.html' %}
+{% load bootstrap5 %}
+
+
 {% block title %}Profil{% endblock title %}
 
 {% block content %}
-<form enctype="multipart/form-data" method="post" class="project-form">
+<form enctype="multipart/form-data" method="post" class="project-form ">
     {% csrf_token %}
-    {{form}}
+    {% bootstrap_form form %}
     {% if form.instance.picture %}
     <img src="{{form.instance.picture.url}}" alt="" class="profile-picture">
     {% endif %}
-    <input type="submit" value="Mettre à jour">
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Mettre à jour
+    </button>
+  {% endbuttons %}
 </form>
 
 <div id="changePassword">
-    <button class='btn' hx-get="{% url 'account_settings:change_password' %}" 
-                        hx-target="#changePassword" 
-                        hx-swap="outerHTML">
+    <button 
+    class='btn btn-primary' 
+    hx-get="{% url 'account_settings:change_password' %}" 
+    hx-target="#changePassword" 
+    hx-swap="outerHTML">
          Changer mon mot de passe
     </button>
 </div>
