@@ -80,10 +80,19 @@
       </div>
     </div>
     <div class="interest">
+      {% if project.user == request.user %}
+      <p class="above-link-project">Ce projet vous interresse ?</p>
+      <a class="link-contact" href="">Contacter le vendeur (c'est vous...)</a>
+      <p class="above-link-project">L'acheter directement pour {{project.price}}€</p>
+      <a class="link-buy" href="{% url 'projects:order' project.slug %}">Vous ne pouvez pas acheter votre projet...</a>
+
+      {% else %}
       <p class="above-link-project">Ce projet vous interresse ?</p>
       <a class="link-contact" href="">Contacter le vendeur</a>
       <p class="above-link-project">L'acheter directement pour {{project.price}}€</p>
       <a class="link-buy" href="{% url 'projects:order' project.slug %}">Acheter {{project.name}}</a>
+      {% endif %}
+
     </div>
   </div>
 </div>
