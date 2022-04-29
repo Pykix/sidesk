@@ -1,13 +1,13 @@
-{% extends "core/base.html" %}
+
 {% load socialaccount %}
 {% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
-{% block content %}
+{% load bootstrap5 %}
 
 
-<h1>{% trans "Sign Up" %}</h1>
+
+
+
+
 
 <div class="signup-page">
     
@@ -15,17 +15,12 @@
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+  {% bootstrap_form form %}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <button class="button-link" type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 
-<p>Vous avez déja un compte ? Se <a class="sign-link" href="{{ login_url }}">Connecter</a>.</p>
-
-  
 </div>
 
-
-{% endblock %}

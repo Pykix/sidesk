@@ -84,10 +84,12 @@ body {
 .profile-picture {
     width: 150px;
 }
+
 .order {
     display: flex;
     flex-direction: row;
 }
+
 .order .item {
     padding: 5px;
     margin: 5px 5px;
@@ -174,10 +176,12 @@ body {
 .project-title {
     margin-bottom: 25px;
 }
+
 .detail-page {
     display: flex;
     justify-content: space-between;
 }
+
 .project-base,
 .project-metrics {
     margin-bottom: 20px;
@@ -244,6 +248,7 @@ body {
     border-radius: 10px;
     border: 1px solid black;
 }
+
 .project-order .profile-user p {
     align-self: center;
     margin-left: 10px;
@@ -265,6 +270,7 @@ body {
     border-radius: 10px;
     margin-bottom: 25px;
 }
+
 .link-buy {
     display: block;
     text-align: center;
@@ -277,6 +283,7 @@ body {
 .above-link-project {
     margin: 10px 0;
 }
+
 /** AUTH **/
 /* Sign Up */
 .signup-page {}
@@ -308,5 +315,3 @@ body {
     flex-direction: column;
     margin: 10px 0;
 }
-
-
