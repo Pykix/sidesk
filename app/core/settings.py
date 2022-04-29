@@ -25,6 +25,7 @@ ALLOWED_HOSTS.extend(
 # Application definition
 
 DJANGO_APPS = [
+    'jazzmin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -209,3 +210,14 @@ CKEDITOR_CONFIGS = {
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+# Jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "Sidesk",
+     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "Sidesk",
+    "welcome_sign": "Administration de Sidesk",
+}

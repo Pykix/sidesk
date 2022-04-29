@@ -10,3 +10,4 @@ crispy-bootstrap5
 django-cleanup
 django-bootstrap-v5
 django-htmx
+django-jazzmin

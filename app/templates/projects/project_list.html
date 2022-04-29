@@ -5,8 +5,8 @@
 <div class="all-project">
 <h2 class="title">Projets à vendre</h2>
 {% if user.is_authenticated %}
-<div class="d-flex">
-<div class="push"></div>
+<div class="d-flex my-2">
+<div class="push me-auto "></div>
 <a href="{% url 'projects:create' %}" class="btn btn-primary align-items-center mr-0">Créer un projet</a>
 </div>
 {% endif %}
@@ -16,8 +16,8 @@
     {% for project in projects %}
     <div class="col-lg-3 d-flex align-items-stretch">
     <a href="{% url 'projects:detail' project.slug %}" class="project-link text-decoration-none text-body">
-        <div class="card" style="width: 18rem;">
-          <img src="{{project.images.all.0.image.url}}" alt="{{project.images.all.0.alt}}" class="card-img-top" />
+        <div class="card h-100" style="width: 18rem;">
+          <img src="{{project.images.all.0.image.url}}" alt="{{project.images.all.0.alt}}" class="card-img-top embed-responsive-item" />
           
           <div class="card-body">
             <span style="background-color:{{project.category.color}};" class="badge rounded-pill">{{project.category}}</span>
