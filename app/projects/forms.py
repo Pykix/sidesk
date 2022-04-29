@@ -4,6 +4,7 @@ from .models import Category, Project, ProjectImage, ProjectMetric
 
 
 class ProjectForm(forms.ModelForm):
+    
     class Meta:
 
         category = forms.ModelChoiceField(
@@ -28,7 +29,7 @@ ImageFileFormSet = forms.inlineformset_factory(
         "image",
         "alt",
     ),
-    extra=3,
+    extra=0,
     can_delete_extra=False,
     form=ProjectForm,
     min_num=1,

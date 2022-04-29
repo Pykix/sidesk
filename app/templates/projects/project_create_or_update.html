@@ -15,13 +15,19 @@
 {% block content %}
 <form method="post" enctype="multipart/form-data" class="project-form">
     {% csrf_token %}
+    <div class="base my-4 p-3 rounded-3">
     {% bootstrap_form form %}
+    </div>
+    <div class="images my-4 p-3 rounded-3">
     {% bootstrap_formset projectimage_form %}
+    </div>
+    <div class="metrics my-4 p-3 rounded-3">
     {% bootstrap_formset projectmetric_form %}
+    </div>
     {% if project %}
-    <input type="submit" value="Mettre à jour">
+    <input type="submit" class="btn btn-primary mb-5" value="Mettre à jour">
     {% else %}
-    <input type="submit" value="Créer">
+    <input type="submit" class="btn btn-primary mb-5" value="Créer mon projet">
     {% endif %}
 
 </form>

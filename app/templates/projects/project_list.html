@@ -3,11 +3,11 @@
 {% block title %}Sidesk tous les projets{% endblock title %}
 {% block content %}
 <div class="all-project">
-<h2 class="title">Projets à vendre</h2>
+<h2 class="title my-2">Projets à vendre</h2>
 {% if user.is_authenticated %}
-<div class="d-flex my-2">
+<div class="d-flex my-4">
 <div class="push me-auto "></div>
-<a href="{% url 'projects:create' %}" class="btn btn-primary align-items-center mr-0">Créer un projet</a>
+<a href="{% url 'projects:create' %}" class="btn btn-primary align-items-center">Créer un projet</a>
 </div>
 {% endif %}
 </div>
@@ -19,18 +19,16 @@
         <div class="card h-100" style="width: 18rem;">
           <img src="{{project.images.all.0.image.url}}" alt="{{project.images.all.0.alt}}" class="card-img-top embed-responsive-item" />
           
-          <div class="card-body">
-            <span style="background-color:{{project.category.color}};" class="badge rounded-pill">{{project.category}}</span>
+          <div class="card-body d-flex flex-column">
+            <span style="background-color:{{project.category.color}};" class="badge rounded-pill w-50 mb-2">{{project.category}}</span>
             <h4 class="card-title">
               {{project.name}}
             </h4>
             <p>
               {{project.summarize}}
             </p>
-            <div class="user">
-              <div class="user-info">
+            <div class="mt-auto">
                 <h5>{{project.price}}€</h5>
-              </div>
             </div>
           </div>
         </div>

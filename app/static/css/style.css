@@ -3,3 +3,9 @@
     height: 7vw !important;
     object-fit: cover !important;
 }
+
+.base,
+.images,
+.metrics {
+    background-color: rgba(128, 128, 128, 0.411);
+}
