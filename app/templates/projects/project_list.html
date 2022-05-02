@@ -1,38 +1,42 @@
 {% extends 'core/base.html' %}
-
+{% load bootstrap5 %}
 {% block title %}Sidesk tous les projets{% endblock title %}
 {% block content %}
 <div class="all-project">
-<h2 class="title my-2">Projets à vendre</h2>
+<h2 class="title my-4">Projets à vendre</h2>
 {% if user.is_authenticated %}
-<div class="d-flex my-4">
-<div class="push me-auto "></div>
-<a href="{% url 'projects:create' %}" class="btn btn-primary align-items-center">Créer un projet</a>
-</div>
+
+<form method="get" class="my-4 row g-3">
+  <div class="col-auto">{% bootstrap_field filter.form.name  %}</div>
+  <div class="col-auto">{% bootstrap_field filter.form.category__label  %}</div>
+  <div class="col-auto">{% bootstrap_field filter.form.price  %}</div>
+  <div class="col-12"><button class="filter-button btn btn-primary" type="submit">Filtrer</button></div>
+
+</form>
 {% endif %}
 </div>
 <div class="container">
   <div class="row">
     {% for project in projects %}
     <div class="col-lg-3 d-flex align-items-stretch">
-    <a href="{% url 'projects:detail' project.slug %}" class="project-link text-decoration-none text-body">
-        <div class="card h-100" style="width: 18rem;">
-          <img src="{{project.images.all.0.image.url}}" alt="{{project.images.all.0.alt}}" class="card-img-top embed-responsive-item" />
-          
+        <div class="card h-100 text-dark bg-light" style="width: 18rem;">
+          <div class="card-header text-center fs-4">{{project.name}}</div>
+          <img src="{{project.images.all.0.image.url}}" alt="{{project.images.all.0.alt}}" class="card-img-top embed-responsive-item mx-auto mt-2" />
           <div class="card-body d-flex flex-column">
-            <span style="background-color:{{project.category.color}};" class="badge rounded-pill w-75 mb-2">{{project.category}}</span>
-            <h4 class="card-title">
-              {{project.name}}
-            </h4>
+            <div class="d-flex justify-content-between">
+              <span  class="">{{project.price}}€</span>
+              <span style="background-color:{{project.category.color}};" class="badge rounded-pill mb-2">{{project.category}}</span>
+            </div>
+            <hr>
             <p>
               {{project.summarize}}
             </p>
-            <div class="mt-auto">
-                <h5>{{project.price}}€</h5>
-            </div>
+            <a href="{% url 'projects:detail' project.slug %}" class="btn btn-primary mt-auto mx-auto">
+              details
+            </a>
           </div>
         </div>
-    </a>
+
   </div>
     {%empty%}
     <li>Pas de projets</li>

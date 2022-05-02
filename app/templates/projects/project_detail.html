@@ -6,7 +6,7 @@
 {% block title %}{{project.title}}{% endblock title %}
 {% block content %}
 
-<h2 class="project-title">{{project.name}}</h2>
+<h2 class="project-title my-3">{{project.name}}</h2>
 <div class="detail-page d-flex">
   <div class="project w-75">
     <div class="project-base p-3 rounded">
@@ -143,10 +143,10 @@
     <div class="interest my-2 p-3 rounded">
       {% if project.user == request.user %}
       <p class="above-link-project">Ce projet vous interresse ?</p>
-      <a class="link-contact" href="">Contacter le vendeur (c'est vous...)</a>
+      <a class="link-contact btn btn-primary disabled" href="#">Se contacter ? Non...</a>
       <hr>
       <p class="above-link-project">L'acheter pour {{project.price}}€</p>
-      <a class="link-buy" href="{% url 'projects:order' project.slug %}">Vous ne pouvez pas acheter votre projet...</a>
+      <a class="link-buy btn btn-success disabled" href="#">C'est votre projet ;)</a>
 
       {% else %}
       <p class="above-link-project">Ce projet vous interresse ?</p>

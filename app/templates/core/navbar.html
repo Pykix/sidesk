@@ -42,6 +42,8 @@
         <!-- Left links -->
         <div class="d-flex align-items-center">
            {% if request.user.is_authenticated %}
+            <a href="{% url 'projects:create' %}" class="btn btn-primary align-items-center">Créer un projet</a>
+
            <div class="dropdown dropstart">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Mon compte
@@ -78,8 +80,8 @@
         <div class="modal-body">
             
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Connexion</button>
-                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
+                  <button class="nav-link active w-50" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Connexion</button>
+                  <button class="nav-link w-50" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
                   hx-get="{% url 'signup' %}" 
                   hx-target="#signUpForm" 
                   hx-swap="outerHTML">Enregistrement</button>

@@ -4,7 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   TemplateView, UpdateView)
+from django_filters.views import FilterView
 
+from .filters import ProjectFilter
 from .forms import ImageFileFormSet, MetricFormSet, ProjectForm
 from .models import Order, Project
 
@@ -44,9 +46,13 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProjectListView(ListView):
+class ProjectListView(FilterView):
+    
+    
     model = Project
     context_object_name = "projects"
+    filterset_class = ProjectFilter
+    template_name = "projects/project_list.html"
     
     def get_queryset(self):
         queryset = super().get_queryset()

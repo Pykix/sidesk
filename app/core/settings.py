@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
     "crispy_bootstrap5",
     "django_cleanup.apps.CleanupConfig",
     "django_htmx",
+    'django_filters',
 ]
 
 PROJECT_APPS = [
