@@ -7,9 +7,9 @@
 {% block content %}
 
 <h2 class="project-title">{{project.name}}</h2>
-<div class="detail-page">
-  <div class="project">
-    <div class="project-base">
+<div class="detail-page d-flex">
+  <div class="project w-75">
+    <div class="project-base p-3 rounded">
       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         {% comment %} <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -19,7 +19,7 @@
         <div class="carousel-inner">
           {% for images in project.images.all %}
           <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-            <img src="{{images.image.url}}" class="d-block w-100" alt="...">
+            <img src="{{images.image.url}}" class="d-block w-100 carousel-img" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>{{images.alt}}</h5>
             </div>
@@ -36,61 +36,124 @@
         </div>
       </div>
 
-      <h4 class="description-title">Description</h4>
+      <h4 class="description-title mt-5 mb-3 fs-1">Description</h4>
+      <hr>
       <div class="desc">
         {{project.description|safe}}
       </div>
     </div>
-    <div class="project-metrics">
+    <div class="project-metrics rounded my-4 p-3">
+      <h4 class=" mb-3 fs-1">Metriques</h4>
+      <hr>
       {% for metrics in project.metrics.all %}
       <div class="metric-view">
         <p>Nombre de vue par mois : {{metrics.viewer_month}}</p>
         {% if metrics.viewer_proof %}
-        <img src="{{metrics.viewer_proof.url}}" />
+        <img src="{{metrics.viewer_proof.url}}" class="w-25" data-toggle="modal" data-target="#viewer-modal"/>
+        <!--Modal Viewer-->
+        <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nombre de vue par mois</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img class="h-100" src="{{metrics.viewer_proof.url}}">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endif %}
       </div>
       <div class="metric-download">
         <p>Nombre de téléchargement par mois : {{metrics.download_month}}</p>
         {% if metrics.download_proof %}
-        <p>{{metrics.download_proof.url}}</p>
+        <img  class="w-25" src="{{metrics.download_proof.url}}" data-toggle="modal" data-target="#download-modal">
+        <!--Modal download-->
+        <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nombre de vue par mois</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img class="h-100" src="{{metrics.download_proof.url}}">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endif %}
       </div>
       <div class="metric-revenue">
-        <p>Nombre de vue par mois : {{metrics.revenue_month}}</p>
+        <p>Revenue par mois : {{metrics.revenue_month}}€</p>
         {% if metrics.revenue_proof %}
-        <p>{{metrics.revenue_proof.url}}</p>
+        <img   class="w-25" src="{{metrics.revenue_proof.url}}" data-toggle="modal" data-target="#revenue-modal">
+        <!--Modal revenue-->
+        <div class="modal fade" id="revenue-modal" tabindex="-1" role="dialog" aria-labelledby="revenue-modal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nombre de vue par mois</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img class="h-100" src="{{metrics.revenue_proof.url}}">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endif %}
       </div>
       {% endfor %}
     </div>
   </div>
-  <div class="project-order">
-    <div class="project-user">
+  <div class="project-order mx-auto">
+    <div class="project-user p-3 rounded">
       <p class="project-user-title">CREATEUR DU PROJET</p>
-      <div class="profile-user">
+      <hr>
+      <div class="profile-user  d-flex">
         {% if project.user.picture %}
-        <img src="{{project.user.picture.url}}" alt="">
+        <img src="{{project.user.picture.url}}" alt="" class="rounded-circle me-2 align-self-center">
         {% else %}
-        <img src="https://ui-avatars.com/api/" alt="">
+        <img src="https://ui-avatars.com/api/" alt="" class="rounded-circle me-2 align-self-center">
         {% endif %}
         <div class="">
-          <p>{{project.user.username}}</p>
-          <p>Inscrit depuis {{project.user.date_joined|date:"d M Y"}}</p>
+          <p class="mb-0">{{project.user.username}}</p>
+          <p class="mb-0">Inscrit depuis {{project.user.date_joined|date:"d M Y"}}</p>
         </div>
       </div>
     </div>
-    <div class="interest">
+    <div class="interest my-2 p-3 rounded">
       {% if project.user == request.user %}
       <p class="above-link-project">Ce projet vous interresse ?</p>
       <a class="link-contact" href="">Contacter le vendeur (c'est vous...)</a>
-      <p class="above-link-project">L'acheter directement pour {{project.price}}€</p>
+      <hr>
+      <p class="above-link-project">L'acheter pour {{project.price}}€</p>
       <a class="link-buy" href="{% url 'projects:order' project.slug %}">Vous ne pouvez pas acheter votre projet...</a>
 
       {% else %}
       <p class="above-link-project">Ce projet vous interresse ?</p>
-      <a class="link-contact" href="">Contacter le vendeur</a>
-      <p class="above-link-project">L'acheter directement pour {{project.price}}€</p>
-      <a class="link-buy" href="{% url 'projects:order' project.slug %}">Acheter {{project.name}}</a>
+      <a class="link-contact btn btn-primary" href="">Contacter le vendeur</a>
+      <hr>
+      <p class="above-link-project">L'acheter pour {{project.price}}€</p>
+      <a class="link-buy  btn btn-success" href="{% url 'projects:order' project.slug %}">Acheter {{project.name}}</a>
       {% endif %}
 
     </div>
@@ -98,6 +161,8 @@
 </div>
 {% endblock content %}
 {% block script %}
+<script src="https://unpkg.com/htmx.org@1.7.0" defer></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
