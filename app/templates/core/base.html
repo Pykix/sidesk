@@ -19,14 +19,33 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     {% include 'core/navbar.html' %}
-    <div class="container">
+    <div class="container flex-shrink-0  container-header">
         {% block content %}
         
         {% endblock content %}
     </div>
-
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container d-flex">
+        <div class="second-nav">
+          <p>Menu</p>
+        <ul class="">
+          <li class=""><a href="{% url 'landing-page' %}" class="text-muted text-decoration-none footer-link">- Accueil</a></li>
+          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Les projects</a></li>
+          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Contact</a></li>
+        </ul>
+        </div>
+        <div class="mandatory-link">
+          <p>Conditions</p>
+        <ul class="">
+          <li class=""><a href="{% url 'cgu' %}" class="text-muted text-decoration-none footer-link">- Condition générale d'utilisation</a></li>
+          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Les projects</a></li>
+          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Contact</a></li>
+        </ul>
+        </div>
+      </div>
+    </footer>
 
     {% block script %}
     <script src="https://unpkg.com/htmx.org@1.7.0" defer></script>

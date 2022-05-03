@@ -12,3 +12,4 @@ django-bootstrap-v5
 django-htmx
 django-jazzmin
 django-filter
+factory_boy

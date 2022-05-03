@@ -48,6 +48,7 @@ THIRD_PARTY_APPS = [
     "django_cleanup.apps.CleanupConfig",
     "django_htmx",
     'django_filters',
+    
 ]
 
 PROJECT_APPS = [
