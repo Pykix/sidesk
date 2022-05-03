@@ -44,12 +44,13 @@
           </div>
         </div>
 
+      </div>
+      {%empty%}
+      <li>Pas de projets</li>
+      {% endfor %}
+    </div>
+      {% bootstrap_pagination page_obj %}
   </div>
-    {%empty%}
-    <li>Pas de projets</li>
-    {% endfor %}
-  </div>
-</div>
 
 {% endblock content %}
 

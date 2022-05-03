@@ -47,8 +47,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
 
 class ProjectListView(FilterView):
-    
-    
+    paginate_by = 24
     model = Project
     context_object_name = "projects"
     filterset_class = ProjectFilter

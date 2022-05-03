@@ -36,3 +36,7 @@
 .footer-link {
     font-size: 12px;
 }
+
+.pagination {
+    justify-content: center;
+}

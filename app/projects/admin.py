@@ -5,7 +5,7 @@ from .models import Category, Order, Project, ProjectImage, ProjectMetric
 
 class ProjectImageInline(admin.StackedInline):
     model = ProjectImage
-    max_num = 0
+    max_num = 1
 
 
 class ProjectMetricInline(admin.StackedInline):
