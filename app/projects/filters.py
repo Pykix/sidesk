@@ -21,10 +21,11 @@ class MyRangeWidget(django_filters.widgets.RangeWidget):
         if max_attrs:
             self.widgets[1].attrs.update(max_attrs)
 
+
 class ProjectFilter(django_filters.FilterSet):
     price = django_filters.RangeFilter(label='Prix', widget=MyRangeWidget(min_attrs={'placeholder': 'min',}, max_attrs={'placeholder': "max"}))
     
-    category__label = django_filters.ModelChoiceFilter(queryset=categories)
+    category__label = django_filters.ModelChoiceFilter(queryset=categories, label="Category")
     name = django_filters.CharFilter(lookup_expr='icontains', label="Nom du projet")
     class Meta:
         model = Project

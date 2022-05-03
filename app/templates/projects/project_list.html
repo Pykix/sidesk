@@ -9,8 +9,15 @@
 <form method="get" class="my-4 row g-3">
   <div class="col-auto">{% bootstrap_field filter.form.name  %}</div>
   <div class="col-auto">{% bootstrap_field filter.form.category__label  %}</div>
-  <div class="col-auto">{% bootstrap_field filter.form.price  %}</div>
-  <div class="col-12"><button class="filter-button btn btn-primary" type="submit">Filtrer</button></div>
+  <div class="col-auto">{% bootstrap_label filter.form.price.label_tag %}
+    <div class="row">
+      <div class="col">
+        {% bootstrap_field filter.form.price layout='horizontal' show_label=False field_class='d-flex'%}
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-auto"><button class="filter-button btn btn-primary" type="submit">Filtrer</button></div>
 
 </form>
 {% endif %}
