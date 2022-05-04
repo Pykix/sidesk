@@ -3,16 +3,16 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {% block headers %}
         {% endblock headers %}
-        <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         {% bootstrap_css %}
         {% bootstrap_javascript %}
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'
-              rel='stylesheet'>
+              rel='stylesheet'/>
         <title>
             {% block title %}
                 Sidesk
@@ -22,7 +22,7 @@
     <body class="d-flex flex-column h-100">
         {% include 'core/navbar.html' %}
         {% with url_name=request.resolver_match.url_name %}
-            <div class="{% if  url_name != 'landing-page' %} container container-header{% else %} container-fluid container-landing-page {% endif %} flex-shrink-0  ">
+            <div class="{% if url_name != 'landing-page' %} container container-header{% else %} container-fluid container-landing-page {% endif %} flex-shrink-0  ">
             {% endwith %}
             {% block content %}
             {% endblock content %}
@@ -33,16 +33,16 @@
                     <p>
                         Menu
                     </p>
-                    <ul class="">
-                        <li class="">
+                    <ul >
+                        <li >
                             <a href="{% url 'landing-page' %}"
                                class="text-muted text-decoration-none footer-link">- Accueil</a>
                         </li>
-                        <li class="">
+                        <li>
                             <a href="{% url 'projects:list' %}"
                                class="text-muted text-decoration-none footer-link">- Les projects</a>
                         </li>
-                        <li class="">
+                        <li>
                             <a href="{% url 'projects:list' %}"
                                class="text-muted text-decoration-none footer-link">- Contact</a>
                         </li>
@@ -52,16 +52,16 @@
                     <p>
                         Conditions
                     </p>
-                    <ul class="">
-                        <li class="">
+                    <ul>
+                        <li>
                             <a href="{% url 'cgu' %}"
                                class="text-muted text-decoration-none footer-link">- Condition générale d'utilisation</a>
                         </li>
-                        <li class="">
+                        <li>
                             <a href="{% url 'projects:list' %}"
                                class="text-muted text-decoration-none footer-link">- Les projects</a>
                         </li>
-                        <li class="">
+                        <li>
                             <a href="{% url 'projects:list' %}"
                                class="text-muted text-decoration-none footer-link">- Contact</a>
                         </li>
