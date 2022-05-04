@@ -2,62 +2,81 @@
 {% load bootstrap5 %}
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block headers %}
-    {% endblock headers %}
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    
-
-    <title>{% block title %}Sidesk{% endblock title %}</title>
-
-</head>
-
-<body class="d-flex flex-column h-100">
-    {% include 'core/navbar.html' %}
-    <div class="container flex-shrink-0  container-header">
-        {% block content %}
-        
-        {% endblock content %}
-    </div>
-    <footer class="footer mt-auto py-3 bg-light">
-      <div class="container d-flex">
-        <div class="second-nav">
-          <p>Menu</p>
-        <ul class="">
-          <li class=""><a href="{% url 'landing-page' %}" class="text-muted text-decoration-none footer-link">- Accueil</a></li>
-          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Les projects</a></li>
-          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Contact</a></li>
-        </ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block headers %}
+        {% endblock headers %}
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'
+              rel='stylesheet'>
+        <title>
+            {% block title %}
+                Sidesk
+            {% endblock title %}
+        </title>
+    </head>
+    <body class="d-flex flex-column h-100">
+        {% include 'core/navbar.html' %}
+        {% with url_name=request.resolver_match.url_name %}
+            <div class="{% if  url_name != 'landing-page' %} container container-header{% else %} container-fluid container-landing-page {% endif %} flex-shrink-0  ">
+            {% endwith %}
+            {% block content %}
+            {% endblock content %}
         </div>
-        <div class="mandatory-link">
-          <p>Conditions</p>
-        <ul class="">
-          <li class=""><a href="{% url 'cgu' %}" class="text-muted text-decoration-none footer-link">- Condition générale d'utilisation</a></li>
-          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Les projects</a></li>
-          <li class=""><a href="{% url 'projects:list' %}" class="text-muted text-decoration-none footer-link">- Contact</a></li>
-        </ul>
-        </div>
-      </div>
-    </footer>
-
-    {% block script %}
-    <script src="https://unpkg.com/htmx.org@1.7.0" defer></script>
-    {% comment %} <script src="{% static 'js/htmx.min.js' %}" defer></script> {% endcomment %}
-
-    {% comment %} <script>
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container d-flex">
+                <div class="second-nav">
+                    <p>
+                        Menu
+                    </p>
+                    <ul class="">
+                        <li class="">
+                            <a href="{% url 'landing-page' %}"
+                               class="text-muted text-decoration-none footer-link">- Accueil</a>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'projects:list' %}"
+                               class="text-muted text-decoration-none footer-link">- Les projects</a>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'projects:list' %}"
+                               class="text-muted text-decoration-none footer-link">- Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mandatory-link">
+                    <p>
+                        Conditions
+                    </p>
+                    <ul class="">
+                        <li class="">
+                            <a href="{% url 'cgu' %}"
+                               class="text-muted text-decoration-none footer-link">- Condition générale d'utilisation</a>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'projects:list' %}"
+                               class="text-muted text-decoration-none footer-link">- Les projects</a>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'projects:list' %}"
+                               class="text-muted text-decoration-none footer-link">- Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        {% block script %}
+            <script src="https://unpkg.com/htmx.org@1.7.0" defer></script>
+            {% comment %} <script src="{% static 'js/htmx.min.js' %}" defer></script> {% endcomment %}
+            {% comment %} <script>
     document.body.addEventListener('htmx:configRequest', (event) => {
       event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
     })
-  </script> {% endcomment %}
-{% endblock script %}
-
-</body>
-
+            </script> {% endcomment %}
+        {% endblock script %}
+    </body>
 </html>
