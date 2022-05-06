@@ -9,4 +9,4 @@ stages:
 Build:
   stage: build
   script:
-    - echo "$GITLAB_USER_NAME Build"
+    - echo $GITLAB_USER_NAME + " Bonjour"
