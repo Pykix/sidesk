@@ -1,6 +1,12 @@
 image: docker:stable
 services:
   - docker:dind
+  - postgresql:latest
+
+variables:
+  POSTGRES_USER: $POSTGRES_USER
+  POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  POSTGRES_DB: $POSTGRES_DB
 
 stages:
   - build
