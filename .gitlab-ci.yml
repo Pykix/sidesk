@@ -1,0 +1,12 @@
+image: docker:stable
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+
+Build:
+  stage: build
+  script:
+    - echo "$GITLAB_USER_NAME Build"
