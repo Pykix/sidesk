@@ -7,16 +7,12 @@ stages:
   - test
 
 before_script:
-  - apk update && pip install docker-compose
-  - pip install -r requirements.txt
-
-Build:
-  stage: build
-  before_script: []
-  script:
-    - echo "Build time"
+  - apk update
+  - apk add py-pip python3-dev libffi-dev openssl-dev gcc libc-dev make
+  - pip install docker-compose
 
 Test:
   stage: test
   script:
-    - python3 manage.py test
+    - docker-compose build
+    - docker-compose run --rm web python manage.py test
