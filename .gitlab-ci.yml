@@ -6,12 +6,17 @@ stages:
   - build
   - test
 
+before_script:
+  - apk update && pip install docker-compose
+  - pip install -r requirements.txt
+
 Build:
   stage: build
+  before_script: []
   script:
     - echo "Build time"
 
 Test:
   stage: test
   script:
-    - python manage.py test
+    - python3 manage.py test
