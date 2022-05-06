@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNbUFFERED 1
-
+ENV PATH="/scripts:${PATH}"
 
 # install psycopg2 dependencies
 RUN apk update \
@@ -15,6 +15,7 @@ RUN pip install -U pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-
 # Copy project
 COPY . .
+RUN chmod +x /scripts/*
+CMD ["entrypoint.sh"]
