@@ -9,4 +9,9 @@ stages:
 Build:
   stage: build
   script:
-    - echo $GITLAB_USER_NAME + " Bonjour"
+    - echo "Build time"
+
+Test:
+  stage: test
+  script:
+    - python manage.py test
