@@ -14,3 +14,7 @@ django-htmx
 django-jazzmin
 django-filter
 factory_boy
+django-renderpdf
+flake8
+weasyprint
+black

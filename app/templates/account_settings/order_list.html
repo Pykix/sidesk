@@ -2,28 +2,61 @@
 {% block title %}Mes demande d'achat / vente{% endblock title %}
 
 {% block content %}
-<h2>Vente</h2>
-{% for order in orders %}
-{% if order.seller == request.user %}
-<div class="order">
-    <p class="item">{{order.bill_number}}</p>
-    <p class="item">{{order.project.name}}</p>
-    <p class="item">{{order.project.price}}</p>
-</div>
-{% endif %}
-{% empty %}
+<h2 class="my-4 fs-1">Vente</h2>
 
-{% endfor %}
+<table class="table">
+<thead>
+    <tr>
+        <th scope='col'>Nom</th>
+        <th scope='col'>Prix</th>
+        <th scope='col'>N° de commande</th>
+        <th scope='col'>Actions</th>
+    </tr>
+</thead>
+<tbody>
+    {% for order in orders %}
+    {% if order.seller == request.user %}
+    <tr>
+        <td>{{order.project.name}}</td>
+        <td>{{order.project.price}}</td>
+        <td>{{order.bill_number}}</td>
+        <td><button class="btn btn-primary">Gérer</button></td>
+    </tr>
+    {% endif %}
+    {% empty %}
+    <tr>
+        <td>Vous n'avez rien vendu pour le moment</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
 
-<h2>Achat</h2>
-{% for order in orders %}
-{% if order.buyer == request.user %}
-<div class="order">
-    <p class="item">{{order.bill_number}}</p>
-    <p class="item">{{order.project.name}}</p>
-    <p class="item">{{order.project.price}}</p>
-</div>
 
-{% endif %}
-{% endfor %}
+<h2 class="fs-1 my-4">Achat</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope='col'>Nom</th>
+            <th scope='col'>Prix</th>
+            <th scope='col'>N° de commande</th>
+            <th scope='col'>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        {% if order.buyer == request.user %}
+        <tr>
+            <td>{{order.project.name}}</td>
+            <td>{{order.project.price}}</td>
+            <td>{{order.bill_number}}</td>
+            <td><a href="{% url 'projects:order_pdf' order.bill_number %}" class="btn btn-primary">Voir la facture</a> <button class="btn btn-success">Voir les documents</button></td>
+        </tr>
+        {% endif %}
+        {% empty %}
+        <tr>
+            <td>Vous n'avez rien vendu pour le moment</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
 {% endblock content %}

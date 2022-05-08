@@ -1,6 +1,22 @@
 {% extends 'core/base.html' %}
 {% block title %}Achat n°{{order.bill_number}}{% endblock title %}
 {% block content %}
-<p>Achat n°{{order.bill_number}}</p>
-<p>Merci pour votre achat ! Vous serez contacter par le vendeur sous 2 jours</p>
+<h1 class="my-4">Merci pour votre achat</h1>
+<hr>
+<p>Voici votre numero de facture : {{order.bill_number}}</p>
+<p>Elle est téléchareable au format pdf <a target=”_blank” href="{% url 'projects:order_pdf' order.bill_number %}">ici</a></p>
+<hr>
+<h2 class="my-4">Que se passe t'il maintenant ?</h2>
+<h4>Votre paiement reste en attente</h4>
+<hr>
+<p>Tant que vous n'avez pas validé la reception de la totalité des documents concernant le projet acheté vous ne serez pas prélevé.</p>
+<p>Seulement une empreinte de carte bleu faite pour nous assurer de votre bonne solvabilité</p>
+
+<h4>J'ai tout les documents</h4>
+<hr>
+<p>Une fois la totalité du projet en votre possession vous êtes prelevé de la somme due</p>
+
+<h4>Enjoy</h4>
+<hr>
+<p>Vous pouvez maintenant profiter de votre nouvelle acquisition !</p>
 {% endblock content %}

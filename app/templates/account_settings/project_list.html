@@ -3,34 +3,30 @@
 {% block content %}
 
 <div class="projects">
-    {% for project in projects %}
-
-    <div class="card">
-        <div class="card-header">
-            <img src="{{project.images.all.0.image.url}}" alt="{{project.images.all.0.alt}}" />
-        </div>
-        <div class="card-body">
-            <div class="">
-            <span style="background-color:{{project.category.color}};" class="badge rounded-pill">{{project.category}}</span>
-            </div>
-            <h4>
-                {{project.name}}
-            </h4>
-            <p>
-                {{project.summarize}}
-            </p>
-            <div class="user">
-                <div class="user-info">
-                    <h5>{{project.price}}€</h5>
-                </div>
-            </div>
-        </div>
-        <a href="{% url 'projects:detail' project.slug %}" class="project-link">Voir</a>
-        <a href="{% url 'projects:update' project.slug %}" class="project-link">Modifier</a>
-    </div>
-    {%empty%}
-    <li>Pas de projets</li>
-    {% endfor %}
+    <h1 class="my-4">Ils sont tous la !</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope='col'>Nom</th>
+                <th scope='col'>Résumé</th>
+                <th scope='col'>Prix</th>
+                <th scope='col'>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{project.name}}</td>
+                    <td>{{project.summarize}}</td>
+                    <td>{{project.price}} €</td>
+                    <td><button class="btn btn-success">Voir</button> <button class='btn btn-danger'>Supprimer</button></td>
+                </tr>
+            {%empty%}
+            <li>Vous n'avez pas encore mis de projets en ligne !</li>
+            {% endfor %}
+        </tbody>
+    </table>
+    
 </div>
 
 {% endblock content %}

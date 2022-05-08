@@ -1,10 +1,12 @@
+import random
+
 import factory
 import factory.fuzzy
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from users.models import CustomUser
 
-from .models import Category, Project
+from .models import Category, Project, ProjectImage
 
 
 class ProjectFactory(factory.django.DjangoModelFactory):
@@ -22,3 +24,31 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     slug = factory.Faker("company")
     visible = factory.Faker("boolean", chance_of_getting_true=100)
     ordered = factory.Faker("boolean", chance_of_getting_true=0)
+
+
+class CategoryFactory(factory.django.DjangoModelFactory):
+    WEB_APP = "WAPP"
+    MOBILE_APP = "MAPP"
+    SOCIAL_MEDIA = "SOME"
+    CUSTOMER_RELATION = "CRM"
+    BLOG = "BLOG"
+    MOBILE_GAME = "MGAM"
+
+    PROJECT_CATEGORIES = [
+        (WEB_APP, "Application web"),
+        (MOBILE_APP, "Application mobile"),
+        (SOCIAL_MEDIA, "Reseau social"),
+        (CUSTOMER_RELATION, "Relation client"),
+        (BLOG, "Blog"),
+        (MOBILE_GAME, "Jeux mobile"),
+    ]
+    random_categories = random.choices(PROJECT_CATEGORIES)
+
+    class Meta:
+        model = Category
+
+
+# class ProjectImageFactory(factory.django.DjangoModelFactory):
+#     project = factory.Iterator(Project.objects.all())
+#     image = factory.django.FileField(from_path="/static/images/computer.jpg")
+#     alt = "Alpha presentation"

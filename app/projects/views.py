@@ -1,10 +1,14 @@
-from re import template
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  TemplateView, UpdateView)
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    TemplateView,
+    UpdateView,
+)
 from django_filters.views import FilterView
+from django_renderpdf.views import PDFView
 
 from .filters import ProjectFilter
 from .forms import ImageFileFormSet, MetricFormSet, ProjectForm
@@ -14,7 +18,6 @@ from .models import Order, Project
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
-    # fields = ('name', 'summarize','description', 'price', 'category', )
     template_name = "projects/project_create_or_update.html"
 
     def get_context_data(self, **kwargs):
@@ -52,12 +55,11 @@ class ProjectListView(FilterView):
     context_object_name = "projects"
     filterset_class = ProjectFilter
     template_name = "projects/project_list.html"
-    
+
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(visible=True)
+        queryset = queryset.filter(visible=True)  # type: ignore
         return queryset
-    
 
 
 class ProjectDetailView(DetailView):
@@ -106,35 +108,41 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ProjectDeleteView(LoginRequiredMixin ,DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     success_url = reverse_lazy("projects:list")
 
 
-
 class CreateOrderTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "orders/order.html"
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['order'] = Order.objects.get(project__slug=self.kwargs['slug'])
+        context["order"] = Order.objects.get(project__slug=self.kwargs["slug"])
         return context
-    
-    
+
     def get(self, request, *args, **kwargs):
-        project = Project.objects.get(slug=self.kwargs['slug'])
-        
+        project = Project.objects.get(slug=self.kwargs["slug"])
+
         order = Order()
         order.project = project
-        order.seller = project.user # type: ignore
+        order.seller = project.user  # type: ignore
         order.buyer = self.request.user
-        order.amount = project.price #type: ignore
+        order.amount = project.price  # type: ignore
         order.save()
-        
-        project.visible = False #type: ignore
-        project.ordered = True #type: ignore
+
+        project.visible = False  # type: ignore
+        project.ordered = True  # type: ignore
         project.save()
-        
+
         return super().get(request, *args, **kwargs)
-        
-    
+
+
+class CreatePDFOrderView(LoginRequiredMixin, PDFView):
+    template_name = "orders/order_pdf_template.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["order"] = Order.objects.get(bill_number=kwargs["bill_number"])
+        print(context["order"])
+        return context
