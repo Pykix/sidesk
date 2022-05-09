@@ -1,0 +1,23 @@
+image:
+  name: docker:stable
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+
+before_script:
+  - apk update
+  - apk add py-pip python3-dev libffi-dev openssl-dev gcc libc-dev make
+  - pip install -U pip
+  - pip install docker-compose
+
+Test:
+  stage: test
+  script:
+    - docker-compose build
+    - docker-compose run --rm web sh -c "python manage.py wait_for_db && python manage.py test"
+  rules:
+    - if: $CI_MERGE_REQUEST_APPROVED && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"

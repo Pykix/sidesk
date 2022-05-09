@@ -1,0 +1,58 @@
+.card-img-top {
+    width: 95% !important;
+    height: 7vw !important;
+    object-fit: cover !important;
+}
+
+.base,
+.images,
+.metrics,
+.project-user,
+.interest,
+.project-base,
+.project-metrics {
+    background-color: rgba(128, 128, 128, 0.411);
+}
+
+.container-header {
+    padding: 60px 15px 0 !important;
+}
+
+.container-landing-page {
+    padding-top: 60px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.landing-image {
+    width: 500px !important;
+    height: 500px !important;
+    object-fit: cover !important;
+}
+
+.stroke-outline {
+    color: white;
+}
+
+.project-user .profile-user img {
+    width: 50px;
+    height: 50px;
+}
+
+.filter-button {
+    margin-top: 32px !important;
+}
+
+.footer-link {
+    font-size: 12px;
+}
+
+.pagination {
+    justify-content: center;
+}

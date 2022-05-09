@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% block title %}Gestion du compte{% endblock title %}
+
+{% block content %}
+Gestion du compte
+<ul>
+    <li><a href="{% url 'account_settings:update' %}">Mettre a jour le profil</a></li>
+    <li><a href="{% url 'account_settings:project_list' %}">Mes Projets</a></li>
+    <li><a href="{% url 'account_settings:order_list' %}">Mes achats / Vente</a></li>
+</ul>
+{% endblock content %}

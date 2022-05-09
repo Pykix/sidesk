@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block title %}Mes projets{% endblock title %}
+{% block content %}
+
+<div class="projects">
+    <h1 class="my-4">Ils sont tous la !</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope='col'>Nom</th>
+                <th scope='col'>Résumé</th>
+                <th scope='col'>Prix</th>
+                <th scope='col'>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{project.name}}</td>
+                    <td>{{project.summarize}}</td>
+                    <td>{{project.price}} €</td>
+                    <td><button class="btn btn-success">Voir</button> <button class='btn btn-danger'>Supprimer</button></td>
+                </tr>
+            {%empty%}
+            <li>Vous n'avez pas encore mis de projets en ligne !</li>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
+{% endblock content %}
