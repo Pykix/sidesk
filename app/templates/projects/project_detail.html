@@ -7,7 +7,7 @@
 {% block content %}
 
 <h2 class="project-title my-3">{{project.name}}</h2>
-<div class="detail-page d-flex">
+<div class="detail-page d-flex ">
   <div class="project w-75">
     <div class="project-base p-3 rounded">
       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -45,11 +45,11 @@
     <div class="project-metrics rounded my-4 p-3">
       <h4 class=" mb-3 fs-1">Metriques</h4>
       <hr>
+      <div class="d-flex justify-content-around">
       {% for metrics in project.metrics.all %}
-      <div class="metric-view">
-        <p>Nombre de vue par mois : {{metrics.viewer_month}}</p>
+      <div class="metric-view card" style="width: 18rem;">
         {% if metrics.viewer_proof %}
-        <img src="{{metrics.viewer_proof.url}}" class="w-25" data-toggle="modal" data-target="#viewer-modal"/>
+        <img src="{{metrics.viewer_proof.url}}" class="card-image-top" data-toggle="modal" data-target="#viewer-modal"/>
         <!--Modal Viewer-->
         <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -70,11 +70,14 @@
           </div>
         </div>
         {% endif %}
+        <div class="card-body">
+
+          <p class="card-text">Nombre de vue par mois : {{metrics.viewer_month}}</p>
+        </div>
       </div>
-      <div class="metric-download">
-        <p>Nombre de téléchargement par mois : {{metrics.download_month}}</p>
+      <div class="metric-download card" style="width: 18rem;">
         {% if metrics.download_proof %}
-        <img  class="w-25" src="{{metrics.download_proof.url}}" data-toggle="modal" data-target="#download-modal">
+        <img  class="card-image-top" src="{{metrics.download_proof.url}}" data-toggle="modal" data-target="#download-modal">
         <!--Modal download-->
         <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -95,11 +98,14 @@
           </div>
         </div>
         {% endif %}
+        <div class="card-body">
+
+          <p class="card-text">Nombre de téléchargement par mois : {{metrics.download_month}}</p>
+        </div>
       </div>
-      <div class="metric-revenue">
-        <p>Revenue par mois : {{metrics.revenue_month}}€</p>
+      <div class="metric-revenue card" style="width: 18rem;">
         {% if metrics.revenue_proof %}
-        <img   class="w-25" src="{{metrics.revenue_proof.url}}" data-toggle="modal" data-target="#revenue-modal">
+        <img   class="img-card-top" src="{{metrics.revenue_proof.url}}" data-toggle="modal" data-target="#revenue-modal">
         <!--Modal revenue-->
         <div class="modal fade" id="revenue-modal" tabindex="-1" role="dialog" aria-labelledby="revenue-modal" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -120,8 +126,12 @@
           </div>
         </div>
         {% endif %}
+        <div class="card-body">
+          <p class="card-text">Revenu par mois : {{metrics.revenue_month}}€</p>
+        </div>
       </div>
       {% endfor %}
+    </div>
     </div>
   </div>
   <div class="project-order mx-auto">
@@ -132,7 +142,7 @@
         {% if project.user.picture %}
         <img src="{{project.user.picture.url}}" alt="" class="rounded-circle me-2 align-self-center">
         {% else %}
-        <img src="https://ui-avatars.com/api/" alt="" class="rounded-circle me-2 align-self-center">
+        <img src="https://avatars.dicebear.com/api/adventurer/{{project.user.username}}.svg" alt="" class="rounded-circle me-2 align-self-center">
         {% endif %}
         <div class="">
           <p class="mb-0">{{project.user.username}}</p>

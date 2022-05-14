@@ -4,7 +4,6 @@
 {% block content %}
 <div class="all-project">
 <h1 class="title my-4">Projets à vendre</h1>
-{% if user.is_authenticated %}
 
 <form method="get" class="my-4 row g-3">
   <div class="col-auto">{% bootstrap_field filter.form.name  %}</div>
@@ -20,7 +19,6 @@
   <div class="col-auto"><button class="filter-button btn btn-primary" type="submit">Filtrer</button></div>
 
 </form>
-{% endif %}
 </div>
 <div class="container">
   <div class="row">

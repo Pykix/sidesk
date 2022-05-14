@@ -4,7 +4,6 @@ from .models import Category, Project, ProjectImage, ProjectMetric
 
 
 class ProjectForm(forms.ModelForm):
-    
     class Meta:
 
         category = forms.ModelChoiceField(
@@ -14,10 +13,11 @@ class ProjectForm(forms.ModelForm):
         fields = ("name", "summarize", "description", "price", "category", "visible")
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-item"}),
+            "description": forms.Textarea(attrs={"class": "bonjour"}),
             "summarize": forms.TextInput(attrs={"class": "form-item"}),
             "price": forms.NumberInput(attrs={"class": "form-item"}),
             "category": forms.Select(attrs={"class": "form-item"}),
-            "visible": forms.CheckboxInput(attrs={"class":"form-item"})
+            "visible": forms.CheckboxInput(attrs={"class": "form-item"}),
         }
         labels = {"name": "Nom du projet"}
 
@@ -29,7 +29,7 @@ ImageFileFormSet = forms.inlineformset_factory(
         "image",
         "alt",
     ),
-    extra=0,
+    extra=1,
     can_delete_extra=False,
     form=ProjectForm,
     min_num=1,

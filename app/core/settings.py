@@ -25,7 +25,7 @@ ALLOWED_HOSTS.extend(
 # Application definition
 
 DJANGO_APPS = [
-    'jazzmin',
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,8 +47,7 @@ THIRD_PARTY_APPS = [
     "crispy_bootstrap5",
     "django_cleanup.apps.CleanupConfig",
     "django_htmx",
-    'django_filters',
-    
+    "django_filters",
 ]
 
 PROJECT_APPS = [
@@ -188,6 +187,7 @@ CKEDITOR_CONFIGS = {
     "project_desc": {
         "skin": "moono",
         "toolbar": "Custom",
+        "height": 500,
         "toolbar_Custom": [
             ["Bold", "Italic", "Underline"],
             [
@@ -217,8 +217,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Jazzmin settings
 JAZZMIN_SETTINGS = {
     "site_title": "Sidesk",
-     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "Sidesk",
     "welcome_sign": "Administration de Sidesk",
