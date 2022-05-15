@@ -160,10 +160,10 @@
 
       {% else %}
       <p class="above-link-project">Ce projet vous interresse ?</p>
-      <a class="link-contact btn btn-primary" href="">Contacter le vendeur</a>
+      <a class="link-contact btn btn-primary {% if request.user.is_authenticated %}{% else %}disabled{% endif %}" href="">Contacter le vendeur</a>
       <hr>
       <p class="above-link-project">L'acheter pour {{project.price}}€</p>
-      <a class="link-buy  btn btn-success" href="{% url 'projects:order' project.slug %}">Acheter {{project.name}}</a>
+      <a class="link-buy  btn btn-success {% if request.user.is_authenticated %}{% else %}disabled{% endif %}" href="{% url 'projects:order' project.slug %}">Acheter {{project.name}}</a>
       {% endif %}
 
     </div>
